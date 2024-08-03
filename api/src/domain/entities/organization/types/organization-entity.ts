@@ -42,6 +42,6 @@ export interface OrganizationEntity {
     
     isActive: boolean
 
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
 }

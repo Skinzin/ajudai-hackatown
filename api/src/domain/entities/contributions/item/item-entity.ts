@@ -1,6 +1,7 @@
 import { OrganizationEntity } from "../../organization/types/organization-entity"
 
 export interface ItemEntity {
+    type: "need" | "provide"
     title: string
     photo: string
     description: string

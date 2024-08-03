@@ -1,0 +1,314 @@
+import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptions/invalid-organization-propety-domain-exception";
+import { OrganizationDomainEntity } from "./organization-domain-entity";
+import { CreateOrganizationInput } from "@/domain/entities/organization/types/create-organization-input";
+import { RestoreOrganizationInput } from "@/domain/entities/organization/types/restore-organization-input";
+import { PhoneValueObject } from "../value-objects/phone-value-object";
+import { AdressValueObject } from "../value-objects/adress-value-object";
+import { SocialNetworkValueObject } from "../value-objects/social-networking-value-object";
+import { LinkedinSocialNetworkValueObject } from "../value-objects/linkedin-social-network-value-object";
+import { InstagramSocialNetworkValueObject } from "../value-objects/instragram-social-network-value-object";
+import { CommentEntity } from "../community-content/comments/types/comment-entity";
+
+
+describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
+
+    const defaultInstagramSocialNetworkValueObject = new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(
+        "https://www.instagram.com/PulseMais/",
+        "Pulse Mais"
+    );
+
+    const defaultLinkedinSocialNetworkValueObject = new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(
+        "https://www.linkedin.com/company/pulse-mais/",
+        "Pulse Mais"
+    );
+
+    const input: CreateOrganizationInput = {
+        name: "Pulse Mais",
+        area: "Animais de Rua",
+        about: "About the organization",
+        email: "test@organization.com",
+        adress: new AdressValueObject(),
+        phone: new PhoneValueObject("+1234567890", true, true, false),
+        photo: "https://example.com/photo.jpg",
+        social: {
+            linkedin: defaultInstagramSocialNetworkValueObject,
+            instagram: defaultLinkedinSocialNetworkValueObject
+        }
+    };
+
+    const someComment: CommentEntity = {
+        id: "07e4779b-8ab7-4d95-9905-d88c9aef924c",
+        organization: {
+            id: "07e4779b-8ab7-4d95-9905-d88c9aef924c",
+            name: "Pulse Mais",
+            area: "Animais de Rua",
+            photo: "https://example.com/photo.jpg",
+        },
+        content: "",
+        isDeleted: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isEdited: false,
+        replies: [],
+        publish: {
+            content: {
+                subject: "subject",
+                text: "text",
+            }
+        }
+    }
+
+
+    const defaultRestoreOrganizationInput: RestoreOrganizationInput = {
+        ...input,
+
+        id: "07e4779b-8ab7-4d95-9905-d88c9aef924c",
+        interations: {
+            publishes: [],
+            comments: [someComment],
+            replies: [],
+        },
+
+        isActive: true,
+        isNeedSomeItems: true,
+        isNeedVoluntarys: false,
+        isProvideSomeItems: true,
+
+        items: {
+            needs: [],
+            provide: [],
+        },
+
+
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    };
+
+    const organizationDefault = OrganizationDomainEntity.create(input);
+
+    it("(create) - Deve ser possível criar uma organização se todos os dados forem válidos", () => {
+        const organization = OrganizationDomainEntity.create(input);
+
+        expect(organization).toBeTruthy();
+        expect(organization).toBeInstanceOf(OrganizationDomainEntity);
+
+        expect(organization.getName()).toEqual("Pulse Mais");
+        expect(organization.getEmail()).toEqual("test@organization.com");
+        expect(organization.getArea()).toEqual("Animais de Rua");
+        expect(organization.getAbout()).toEqual("About the organization");
+        expect(organization.getAdress()).toEqual(input.adress);
+        expect(organization.getPhone()).toEqual(input.phone);
+        expect(organization.getPhoto()).toEqual("https://example.com/photo.jpg");
+    });
+
+    it("(create [name]) - Não deve ser possível criar uma organização com o nome inválido", () => {
+        const inputWithInvalidName = { ...input, name: "" };
+
+        expect(() => OrganizationDomainEntity.create(inputWithInvalidName)).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                196,
+                "name",
+                "O nome não pode ser vazio!"
+            )
+        );
+    });
+
+    it("(create [email]) - Não deve ser possível criar uma organização com um e-mail inválido", () => {
+        const inputWithInvalidEmail = { ...input, email: "invalid-email" };
+
+        expect(() => OrganizationDomainEntity.create(inputWithInvalidEmail)).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                325,
+                "email",
+                "O e-mail fornecido não é válido."
+            )
+        );
+    });
+
+    it("(create [email]) - Não deve ser possível criar uma organização com um e-mail banido", () => {
+        const inputWithBannedEmail = { ...input, email: "test@fake.com" };
+
+        expect(() => OrganizationDomainEntity.create(inputWithBannedEmail)).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                332,
+                "email",
+                "O domínio do e-mail fornecido está banido."
+            )
+        );
+    });
+
+    it("(create [photo]) - Não deve ser possível criar uma organização com uma URL de foto inválida", () => {
+        const inputWithInvalidPhoto = { ...input, photo: "invalid-url" };
+
+        expect(() => OrganizationDomainEntity.create(inputWithInvalidPhoto)).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                457,
+                "photo",
+                "A URL da foto fornecida não é válida."
+            )
+        );
+    });
+
+    it("(restore) - Deve ser possível restaurar uma organização se todos os dados forem válidos", () => {
+
+        const organization = OrganizationDomainEntity.restore(defaultRestoreOrganizationInput);
+
+        expect(organization).toBeTruthy();
+        expect(organization).toBeInstanceOf(OrganizationDomainEntity);
+
+        expect(organization.getId()).toEqual(defaultRestoreOrganizationInput.id);
+        expect(organization.getName()).toEqual("Pulse Mais");
+        expect(organization.getEmail()).toEqual("test@organization.com");
+        expect(organization.getArea()).toEqual("Animais de Rua");
+        expect(organization.getAbout()).toEqual("About the organization");
+        expect(organization.getAdress()).toEqual(defaultRestoreOrganizationInput.adress);
+        expect(organization.getPhone()).toEqual(defaultRestoreOrganizationInput.phone);
+        expect(organization.getPhoto()).toEqual("https://example.com/photo.jpg");
+        expect(organization.getInterations()).toEqual(defaultRestoreOrganizationInput.interations);
+        expect(organization.getCreatedAt()).toEqual(defaultRestoreOrganizationInput.createdAt);
+        expect(organization.getUpdatedAt()).toEqual(defaultRestoreOrganizationInput.updatedAt);
+    });
+
+    it("(restore [id]) - Não deve ser possível restaurar uma organização se o id não for válido", () => {
+        const restoreInputWithInvalidId: RestoreOrganizationInput = {
+            ...defaultRestoreOrganizationInput,
+        };
+
+        restoreInputWithInvalidId.id = "invalid-id";
+
+        expect(() => OrganizationDomainEntity.restore(restoreInputWithInvalidId)).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                131,
+                "id",
+                "O id da organização não é válido."
+            )
+        );
+    });
+
+    it("(restore [email]) - Não deve ser possível restaurar uma organização com um e-mail inválido", () => {
+        const restoreInputWithInvalidEmail = {
+            ...defaultRestoreOrganizationInput,
+        };
+
+        restoreInputWithInvalidEmail.email = "invalid-email";
+
+        expect(() => OrganizationDomainEntity.restore(restoreInputWithInvalidEmail)).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                325,
+                "email",
+                "O e-mail fornecido não é válido."
+            )
+        );
+    });
+
+    it("(restore [photo]) - Não deve ser possível restaurar uma organização com uma URL de foto inválida", () => {
+        const restoreInputWithInvalidPhoto = {
+            ...defaultRestoreOrganizationInput,
+        }
+
+        restoreInputWithInvalidPhoto.photo = "invalid-url";
+
+        expect(() => OrganizationDomainEntity.restore(restoreInputWithInvalidPhoto)).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                457,
+                "photo",
+                "A URL da foto fornecida não é válida."
+            )
+        );
+    });
+
+    it("(setName) - Deve alterar o nome caso seja válido", () => {
+        organizationDefault.setName("New Organization Name");
+        expect(organizationDefault.getName()).toEqual("New Organization Name");
+    });
+
+    it("(setName) - Não deve alterar o nome caso não seja válido", () => {
+        expect(() => organizationDefault.setName("")).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                196,
+                "name",
+                "O nome não pode ser vazio!"
+            )
+        );
+    });
+
+    it("(setEmail) - Deve alterar o e-mail caso seja válido", () => {
+        organizationDefault.setEmail("new@organization.com");
+        expect(organizationDefault.getEmail()).toEqual("new@organization.com");
+    });
+
+    it("(setEmail) - Não deve alterar o e-mail caso não seja válido", () => {
+        expect(() => organizationDefault.setEmail("invalid-email")).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                325,
+                "email",
+                "O e-mail fornecido não é válido."
+            )
+        );
+    });
+
+    it("(setPhone) - Deve alterar o telefone caso seja válido", () => {
+        const newPhone = new PhoneValueObject("+5511970707777", false, true, false);
+        organizationDefault.setPhone(newPhone);
+        expect(organizationDefault.getPhone()).toEqual(newPhone);
+    });
+
+    it("(setPhoto) - Deve alterar a URL da foto caso seja válida", () => {
+        organizationDefault.setPhoto("https://example.com/newphoto.jpg");
+        expect(organizationDefault.getPhoto()).toEqual("https://example.com/newphoto.jpg");
+    });
+
+    it("(setPhoto) - Não deve alterar a URL da foto caso não seja válida", () => {
+        expect(() => organizationDefault.setPhoto("invalid-url")).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                457,
+                "photo",
+                "A URL da foto fornecida não é válida."
+            )
+        );
+    });
+
+    it("(setCreatedAt) - Deve alterar a data de criação caso seja válida", () => {
+        const newDate = new Date();
+        organizationDefault.setCreatedAt(newDate);
+        expect(organizationDefault.getCreatedAt()).toEqual(newDate);
+    });
+
+    it("(setCreatedAt) - Não deve alterar a data de criação caso não seja válida", () => {
+        expect(() => organizationDefault.setCreatedAt(new Date("invalid-date"))).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                551,
+                "createdAt",
+                "A data de criação fornecida não é válida."
+            )
+        );
+    });
+
+    it("(setUpdatedAt) - Deve alterar a data de atualização caso seja válida", () => {
+        const newDate = new Date();
+        organizationDefault.setUpdatedAt(newDate);
+        expect(organizationDefault.getUpdatedAt()).toEqual(newDate);
+    });
+
+    it("(setUpdatedAt) - Não deve alterar a data de atualização caso não seja válida", () => {
+        expect(() => organizationDefault.setUpdatedAt(new Date("invalid-date"))).toThrow(
+            new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                569,
+                "updatedAt",
+                "A data de atualização fornecida não é válida."
+            )
+        );
+    });
+});
