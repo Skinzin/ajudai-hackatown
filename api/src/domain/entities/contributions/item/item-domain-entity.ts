@@ -9,7 +9,6 @@ export class ItemDomainEntity implements ItemEntity {
     public type?: "need" | "provide";
     public title?: string;
     public photo?: string;
-    public description?: string;
     public donationValue?: number;
     public priority?: "emergency" | "high" | "moderate" | "normal";
     public category?: string;
@@ -29,7 +28,6 @@ export class ItemDomainEntity implements ItemEntity {
         item.setType(input.type);
         item.setTitle(input.title);
         item.setPhoto(input.photo);
-        item.setDescription(input.description);
         item.setDonationValue(input.donationValue);
         item.setPriority(input.priority);
         item.setCategory(input.category);
@@ -50,7 +48,6 @@ export class ItemDomainEntity implements ItemEntity {
         item.setType(input.type);
         item.setTitle(input.title);
         item.setPhoto(input.photo);
-        item.setDescription(input.description);
         item.setDonationValue(input.donationValue);
         item.setPriority(input.priority);
         item.setCategory(input.category);
@@ -129,22 +126,6 @@ export class ItemDomainEntity implements ItemEntity {
             );
         }
         this.photo = photo;
-    }
-
-    public getDescription(): string | undefined {
-        return this.description;
-    }
-
-    public setDescription(description: string): void {
-        if (description && (description.length < 10 || description.length > 1000)) {
-            throw new InvalidItemPropertyDomainException(
-                'item-domain-entity.ts',
-                55,
-                'description',
-                'A descrição deve ter entre 10 e 1000 caracteres.'
-            );
-        }
-        this.description = description;
     }
 
     public getDonationValue(): number | undefined {

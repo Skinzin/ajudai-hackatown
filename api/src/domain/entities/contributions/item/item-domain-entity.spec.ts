@@ -48,7 +48,7 @@ describe("(UnityTest) - ItemDomainEntity", () => {
         expect(item.getType()).toEqual(validCreateInput.type);
         expect(item.getTitle()).toEqual(validCreateInput.title);
         expect(item.getPhoto()).toEqual(validCreateInput.photo);
-        expect(item.getDescription()).toEqual(validCreateInput.description);
+     
         expect(item.getDonationValue()).toEqual(validCreateInput.donationValue);
         expect(item.getPriority()).toEqual(validCreateInput.priority);
         expect(item.getCategory()).toEqual(validCreateInput.category);
@@ -69,7 +69,7 @@ describe("(UnityTest) - ItemDomainEntity", () => {
         expect(item.getType()).toEqual(validRestoreInput.type);
         expect(item.getTitle()).toEqual(validRestoreInput.title);
         expect(item.getPhoto()).toEqual(validRestoreInput.photo);
-        expect(item.getDescription()).toEqual(validRestoreInput.description);
+ 
         expect(item.getDonationValue()).toEqual(validRestoreInput.donationValue);
         expect(item.getPriority()).toEqual(validRestoreInput.priority);
         expect(item.getCategory()).toEqual(validRestoreInput.category);

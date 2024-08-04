@@ -1,4 +1,4 @@
-import { CreatePublicationDomainServiceInput } from "@/domain/domain-services/community-content/types/create-publication-domain-service-input"
+import { CreatePublicationDomainServiceInput } from "@/domain/domain-services/community-content/types/community-content-domain-inputs"
 
 
 export interface CreatePublicationUseCaseInputDTO  {

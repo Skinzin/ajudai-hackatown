@@ -1,5 +1,5 @@
 import { PublicationDomainEntity } from "@/domain/entities/community-content/publications/publication-domain-entity";
-import { CreatePublicationDomainServiceInput } from "./types/create-publication-domain-service-input";
+import { CreatePublicationDomainServiceInput } from "./types/community-content-domain-inputs";
 
 
 export class CommunityContentDomainService {

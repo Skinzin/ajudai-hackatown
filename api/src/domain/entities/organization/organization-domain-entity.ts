@@ -1,18 +1,17 @@
 import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptions/invalid-organization-propety-domain-exception";
 import { CommentDomainEntity } from "../community-content/comments/comment-domain-entity";
-import { CommentEntity } from "../community-content/comments/types/comment-entity";
 import { PublicationDomainEntity } from "../community-content/publications/publication-domain-entity";
 import { ReplyDomainEntity } from "../community-content/replies/reply-domain-entity";
-import { ReplyEntity } from "../community-content/replies/types/reply-entity";
 import { ItemEntity } from "../contributions/item/types/item-entity";
 import { AddressValueObject } from "../value-objects/address-value-object";
 import { EmptySocialNetworkValueObject } from "../value-objects/empty-social-network-value-object";
+import { FacebookSocialNetworkValueObject } from "../value-objects/facebook-value-object";
 import { InstagramSocialNetworkValueObject } from "../value-objects/instragram-social-network-value-object";
 import { LinkedinSocialNetworkValueObject } from "../value-objects/linkedin-social-network-value-object";
 import { PhoneValueObject } from "../value-objects/phone-value-object";
 import { SocialNetworkValueObject } from "../value-objects/social-networking-value-object";
+import { TwitterSocialNetworkValueObject } from "../value-objects/twitter-value-network-value-object";
 import { CreateOrganizationInput, RestoreOrganizationInput } from "./types/organization-domain-entity-inputs";
-
 
 
 export class OrganizationDomainEntity {
@@ -25,13 +24,15 @@ export class OrganizationDomainEntity {
 
     private area?: string;
     private email?: string;
+    private password?: string;
+
     private phone?: PhoneValueObject;
     private photo?: string;
 
     private interations?: {
         publications: PublicationDomainEntity[];
-        comments: CommentEntity[];
-        replies: ReplyEntity[];
+        comments: CommentDomainEntity[];
+        replies: ReplyDomainEntity[];
     };
 
     private items?: {
@@ -40,9 +41,11 @@ export class OrganizationDomainEntity {
     };
 
     private social?: {
-        linkedin: SocialNetworkValueObject<LinkedinSocialNetworkValueObject | EmptySocialNetworkValueObject>;
-        instagram: SocialNetworkValueObject<InstagramSocialNetworkValueObject | EmptySocialNetworkValueObject>;
-    };
+        linkedin: SocialNetworkValueObject<LinkedinSocialNetworkValueObject> | EmptySocialNetworkValueObject,
+        instagram: SocialNetworkValueObject<InstagramSocialNetworkValueObject> | EmptySocialNetworkValueObject,
+        twitter: SocialNetworkValueObject<TwitterSocialNetworkValueObject> | EmptySocialNetworkValueObject,
+        facebook: SocialNetworkValueObject<FacebookSocialNetworkValueObject> | EmptySocialNetworkValueObject,
+    }
 
     private isNeedSomeItems?: boolean;
     private isNeedVoluntarys?: boolean;
@@ -54,7 +57,7 @@ export class OrganizationDomainEntity {
 
     private constructor() { }
 
-    public addInteraction(interaction: PublicationDomainEntity | CommentDomainEntity | ReplyEntity) {
+    public addInteraction(interaction: PublicationDomainEntity | CommentDomainEntity | ReplyDomainEntity) {
 
         if (interaction instanceof PublicationDomainEntity) {
             this.addPublicationInteraction(interaction);
@@ -91,7 +94,7 @@ export class OrganizationDomainEntity {
         this.interations!.publications.push(publication);
     }
 
-    private addCommentInteraction(comment: CommentEntity): void {
+    private addCommentInteraction(comment: CommentDomainEntity): void {
         if (!comment.organization) {
             throw new InvalidOrganizationPropetyDomainException(
                 "organization-domain-entity.ts",
@@ -113,7 +116,7 @@ export class OrganizationDomainEntity {
         this.interations!.comments.push(comment);
     }
 
-    private addReplyInteraction(reply: ReplyEntity): void {
+    private addReplyInteraction(reply: ReplyDomainEntity): void {
         if (!reply.organization) {
             throw new InvalidOrganizationPropetyDomainException(
                 "organization-domain-entity.ts",
@@ -146,6 +149,7 @@ export class OrganizationDomainEntity {
         organization.setArea(input.area);
         organization.setAbout(input.about);
         organization.setEmail(input.email);
+        organization.setPassword(input.password);
         organization.setAddress(input.Address);
         organization.setPhone(input.phone);
         organization.setPhoto(input.photo);
@@ -182,6 +186,7 @@ export class OrganizationDomainEntity {
         organization.setArea(input.area);
         organization.setAbout(input.about);
         organization.setEmail(input.email);
+        organization.setPassword(input.password);
         organization.setAddress(input.address);
 
         organization.setPhoto(input.photo);
@@ -205,6 +210,8 @@ export class OrganizationDomainEntity {
 
         return organization
     }
+
+
 
     public getId(): string | undefined {
         return this.id;
@@ -232,6 +239,32 @@ export class OrganizationDomainEntity {
         }
 
         this.id = id
+    }
+
+    public getPassword(): string | undefined {
+        return this.password;
+    }
+
+    public setPassword(password: string): void {
+        if (!password) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                196,
+                "password",
+                "A senha não pode ser vazia!"
+            )
+        }
+
+        if (password.length < 3 || password.length > 50) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                205,
+                "password",
+                "A senha deve ter entre 3 e 50 caracteres."
+            )
+        }
+
+        this.password = password;
     }
 
     public getName(): string | undefined {
@@ -448,8 +481,8 @@ export class OrganizationDomainEntity {
     public setInterations(
         interations: {
             publications: PublicationDomainEntity[],
-            comments: CommentEntity[],
-            replies: ReplyEntity[]
+            comments: CommentDomainEntity[],
+            replies: ReplyDomainEntity[]
         }
     ): void {
 
@@ -652,23 +685,23 @@ export class OrganizationDomainEntity {
         this.photo = photo;
     }
 
+    
     public getSocial() {
         return this.social;
     }
 
     public setSocial(
         social: {
-            linkedin: SocialNetworkValueObject<LinkedinSocialNetworkValueObject | EmptySocialNetworkValueObject>,
-            instagram: SocialNetworkValueObject<InstagramSocialNetworkValueObject | EmptySocialNetworkValueObject>
+            linkedin: SocialNetworkValueObject<LinkedinSocialNetworkValueObject> | EmptySocialNetworkValueObject,
+            instagram: SocialNetworkValueObject<InstagramSocialNetworkValueObject> | EmptySocialNetworkValueObject,
+            twitter: SocialNetworkValueObject<TwitterSocialNetworkValueObject> | EmptySocialNetworkValueObject,
+            facebook: SocialNetworkValueObject<FacebookSocialNetworkValueObject> | EmptySocialNetworkValueObject,
         }
     ): void {
 
-        if (social.linkedin) {
+        if (social.linkedin instanceof SocialNetworkValueObject) {
             const nameInSocialNetwork = social.linkedin.nameInSocialNetwork;
             if (!nameInSocialNetwork.includes(this.name!)) {
-
-                console.log(nameInSocialNetwork);
-                console.log(this.name);
                 throw new InvalidOrganizationPropetyDomainException(
                     "organization-domain-entity.ts",
                     465,
@@ -678,7 +711,7 @@ export class OrganizationDomainEntity {
             }
         }
 
-        if (social.instagram) {
+        if (social.instagram instanceof SocialNetworkValueObject) {
             const nameInSocialNetwork = social.instagram.nameInSocialNetwork;
             if (!nameInSocialNetwork.includes(this.name!)) {
                 throw new InvalidOrganizationPropetyDomainException(
@@ -686,6 +719,30 @@ export class OrganizationDomainEntity {
                     475,
                     "social.instagram.nameInSocialNetwork",
                     `O nome da conta do Instagram não contém o nome da organização!`
+                );
+            }
+        }
+
+        if (social.twitter instanceof SocialNetworkValueObject) {
+            const nameInSocialNetwork = social.twitter.nameInSocialNetwork;
+            if (!nameInSocialNetwork.includes(this.name!)) {
+                throw new InvalidOrganizationPropetyDomainException(
+                    "organization-domain-entity.ts",
+                    485,
+                    "social.twitter.nameInSocialNetwork",
+                    `O nome da conta do Twitter não contém o nome da organização!`
+                );
+            }
+        }
+
+        if (social.facebook instanceof SocialNetworkValueObject) {
+            const nameInSocialNetwork = social.facebook.nameInSocialNetwork;
+            if (!nameInSocialNetwork.includes(this.name!)) {
+                throw new InvalidOrganizationPropetyDomainException(
+                    "organization-domain-entity.ts",
+                    495,
+                    "social.facebook.nameInSocialNetwork",
+                    `O nome da conta do Facebook não contém o nome da organização!`
                 );
             }
         }

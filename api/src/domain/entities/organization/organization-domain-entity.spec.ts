@@ -6,7 +6,8 @@ import { AddressValueObject } from "../value-objects/address-value-object";
 import { SocialNetworkValueObject } from "../value-objects/social-networking-value-object";
 import { LinkedinSocialNetworkValueObject } from "../value-objects/linkedin-social-network-value-object";
 import { InstagramSocialNetworkValueObject } from "../value-objects/instragram-social-network-value-object";
-import { CommentEntity } from "../community-content/comments/types/comment-entity";
+import { EmptySocialNetworkValueObject } from "../value-objects/empty-social-network-value-object";
+import { CommentDomainEntity } from "../community-content/comments/comment-domain-entity";
 
 
 describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
@@ -31,32 +32,29 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
         phone: new PhoneValueObject("+1234567890", true, true, false),
         photo: "https://example.com/photo.jpg",
         social: {
-            linkedin: defaultInstagramSocialNetworkValueObject,
-            instagram: defaultLinkedinSocialNetworkValueObject
+            linkedin: new EmptySocialNetworkValueObject(),
+            instagram: new EmptySocialNetworkValueObject(),
+            twitter: new EmptySocialNetworkValueObject(),
+            facebook: new EmptySocialNetworkValueObject(),
         }
     };
 
-    const someComment: CommentEntity = {
-        id: "07e4779b-8ab7-4d95-9905-d88c9aef924c",
+    const someComment: CommentDomainEntity = CommentDomainEntity.create({
+ 
         organization: {
             id: "07e4779b-8ab7-4d95-9905-d88c9aef924c",
             name: "Pulse Mais",
             area: "Animais de Rua",
             photo: "https://example.com/photo.jpg",
         },
-        content: "",
-        isDeleted: false,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        isEdited: false,
-        replies: [],
+        content: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
         publish: {
             content: {
                 subject: "subject",
                 text: "text",
             }
         }
-    }
+    });
 
 
     const defaultRestoreOrganizationInput: RestoreOrganizationInput = {

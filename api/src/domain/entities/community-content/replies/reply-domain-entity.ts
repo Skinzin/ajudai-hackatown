@@ -150,6 +150,7 @@ export class ReplyDomainEntity implements ReplyEntity {
         this.content = content;
     }
 
+
     public getIsDeleted(): boolean | undefined {
         return this.isDeleted;
     }
