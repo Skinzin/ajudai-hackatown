@@ -34,9 +34,10 @@ A missão do <b>Ajuda Aí</b> é criar uma rede de apoio que transforma a solida
 </div>
 
 ## ⚙️ Desenvolvimento
+Primeiro foi desenvolvido o Wireframe e Protótipo após a discussão e estruturação da ideia (você pode acessar o nosso protótipo [aqui](https://www.figma.com/design/xkuOYcEVXBGjsdERK4xwKn/Ajuda-A%C3%AD---Coda-Fofos-%7C-Hackathon-Kipperdev?node-id=0-1&t=7VZJ6t6AjpiftZrY-1)).
 
 ## 🎨 Identidade Visual
-Para a identidade visual procuramos algo que apresentasse o que queríamos, mas também tentamos trabalhar com coisas que queríamos tester (afinal, estamos usando essa oportunidade para aprender). 
+Para a identidade visual procuramos algo que apresentasse o que queríamos, mas também tentamos trabalhar com coisas que queríamos testar (afinal, estamos usando essa oportunidade para aprender). 
 
 ### Tipografia
 Para os títulos utilizamos a fonte Nunito, por sua aparência amigável e convidativa. Para o corpo escolhemos a Poppins, por conversar bem com a Nunito e, assim como ela, ter uma ótima legibilidade.
