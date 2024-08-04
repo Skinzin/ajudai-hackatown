@@ -1,4 +1,5 @@
 import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptions/invalid-organization-propety-domain-exception";
+import { CommentDomainEntity } from "../community-content/comments/comment-domain-entity";
 import { CommentEntity } from "../community-content/comments/types/comment-entity";
 import { PublicationDomainEntity } from "../community-content/publications/publication-domain-entity";
 import { ReplyEntity } from "../community-content/replies/types/reply-entity";
@@ -52,14 +53,14 @@ export class OrganizationDomainEntity {
 
     private constructor() { }
 
-    public addInteraction(interaction: PublicationDomainEntity | CommentEntity | ReplyEntity): OrganizationDomainEntity {
+    public addInteraction(interaction: PublicationDomainEntity | CommentDomainEntity | ReplyEntity): OrganizationDomainEntity {
 
         if (interaction instanceof PublicationDomainEntity) {
             this.addPublicationInteraction(interaction);
         }
 
-        if (interaction instanceof CommentEntity) {
-            // this.interations.comments.push(interaction);
+        if (interaction instanceof CommentDomainEntity) {
+            this.addCommentInteraction(interaction);
         } 
         
         if (interaction instanceof ReplyEntity) {
