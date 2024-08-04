@@ -1,5 +1,8 @@
 import { OrganizationDomainEntity } from "@/domain/entities/organization/organization-domain-entity";
-import { CreateOrganizationDomainServiceInput, DeleteOrganizationDomainServiceInput, ReadCommentsInteractionsDomainServiceInput, ReadPublicationsInteractionsDomainServiceInput, ReadRepliesInteractionsDomainServiceInput, UpdateOrganizationDomainServiceInput } from "./types/organization-domain-service-inputs";
+import { CreateOrganizationDomainServiceInput, DeleteOrganizationDomainServiceInput, GetCommentInteractionDomainServiceInput, GetPublicationInteractionDomainServiceInput, GetReplyInteractionDomainServiceInput, ReadCommentsInteractionsDomainServiceInput, ReadPublicationsInteractionsDomainServiceInput, ReadRepliesInteractionsDomainServiceInput, SaveInteractionDomainServiceInput, UpdateOrganizationDomainServiceInput } from "./types/organization-domain-service-inputs";
+import { CommentDomainEntity } from "@/domain/entities/community-content/comments/comment-domain-entity";
+import { ReplyDomainEntity } from "@/domain/entities/community-content/replies/reply-domain-entity";
+import { PublicationDomainEntity } from "@/domain/entities/community-content/publications/publication-domain-entity";
 
 
 export class OrganizationDomainService {
@@ -80,13 +83,37 @@ export class OrganizationDomainService {
         return organization
     }
 
+    getCommentInteraction(input: GetCommentInteractionDomainServiceInput) {
+        const { organization, interactionId } = input;
+
+        const comments: CommentDomainEntity[] = this.readCommentsInteractions({ organization });
+
+        return comments.find(comment => comment.getId() === interactionId);
+    }
+
+    getReplyInteraction(input: GetReplyInteractionDomainServiceInput) {
+        const { organization, interactionId } = input;
+
+        const replies: ReplyDomainEntity[] = this.readRepliesInteractions({ organization });
+
+        return replies.find(reply => reply.getId() === interactionId);
+    }
+
+    getPublicationInteraction(input: GetPublicationInteractionDomainServiceInput) {
+        const { organization, interactionId } = input;
+
+        const publications: PublicationDomainEntity[] = this.readPublicationsInteractions({ organization });
+
+        return publications.find(publication => publication.getId() === interactionId);
+    }
+
     readCommentsInteractions(input: ReadCommentsInteractionsDomainServiceInput) {
         const { organization } = input;
 
         const interactions = organization.getInterations();
         const comments = interactions!.comments;
         return comments;
-    }   
+    }
 
     readRepliesInteractions(input: ReadRepliesInteractionsDomainServiceInput) {
         const { organization } = input;
@@ -94,7 +121,7 @@ export class OrganizationDomainService {
         const interactions = organization.getInterations();
         const replies = interactions!.replies;
         return replies;
-    }   
+    }
 
     readPublicationsInteractions(input: ReadPublicationsInteractionsDomainServiceInput) {
         const { organization } = input;
@@ -102,6 +129,42 @@ export class OrganizationDomainService {
         const interactions = organization.getInterations();
         const publications = interactions!.publications;
         return publications;
+    }
+
+    getNeededItem(input: GetNeededItemDomainServiceInput) {
+        const { organization, itemId } = input;
+
+        const items = organization.getItems()!;
+        const neededItems = items.needs;
+
+        return neededItems.find(item => item.getId() === itemId);
+    }
+
+    getProvidedItem(input: GetProvidedItemDomainServiceInput) {
+        const { organization, itemId } = input;
+
+        const items = organization.getItems()!;
+        const providedItems = items.provide;
+
+        return providedItems.find(item => item.getId() === itemId);
+    }
+
+    readNeededItems(input: ReadNeededItemsDomainServiceInput) {
+        const { organization } = input;
+
+        const items = organization.getItems()!;
+        const neededItems = items.needs;
+
+        return neededItems;
+    }
+
+    readProvidedItems(input: ReadProvidedItemsDomainServiceInput) {
+        const { organization } = input;
+        const items = organization.getItems()!;
+
+        const providedItems = items.provide;
+
+        return providedItems;
     }
 
 

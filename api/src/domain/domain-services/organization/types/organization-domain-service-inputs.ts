@@ -7,6 +7,9 @@ import { LinkedinSocialNetworkValueObject } from "@/domain/entities/value-object
 import { PhoneValueObject } from "@/domain/entities/value-objects/phone-value-object"
 import { SocialNetworkValueObject } from "@/domain/entities/value-objects/social-networking-value-object"
 import { TwitterSocialNetworkValueObject } from "@/domain/entities/value-objects/twitter-value-network-value-object"
+import { CommentDomainEntity } from "@/domain/entities/community-content/comments/comment-domain-entity"
+import { PublicationDomainEntity } from "@/domain/entities/community-content/publications/publication-domain-entity"
+import { ReplyDomainEntity } from "@/domain/entities/community-content/replies/reply-domain-entity"
 
 
 export interface CreateOrganizationDomainServiceInput extends CreateOrganizationInput { }
@@ -38,10 +41,38 @@ export interface DeleteOrganizationDomainServiceInput {
     organization: OrganizationDomainEntity
 }
 
+export interface SaveInteractionDomainServiceInput {
+    organization: OrganizationDomainEntity
+    interaction: CommentDomainEntity | PublicationDomainEntity | ReplyDomainEntity
+}
+
 interface ReadInteraction {
     organization: OrganizationDomainEntity
 }
 
-export interface ReadCommentsInteractionsDomainServiceInput extends ReadInteraction {}
-export interface ReadRepliesInteractionsDomainServiceInput extends ReadInteraction {}
-export interface ReadPublicationsInteractionsDomainServiceInput extends ReadInteraction {}
+interface GetInteractionById extends ReadInteraction {
+    interactionId: string
+}
+
+export interface ReadCommentsInteractionsDomainServiceInput extends ReadInteraction { }
+export interface ReadRepliesInteractionsDomainServiceInput extends ReadInteraction { }
+export interface ReadPublicationsInteractionsDomainServiceInput extends ReadInteraction { }
+
+export interface GetCommentInteractionDomainServiceInput extends GetInteractionById {}
+export interface GetReplyInteractionDomainServiceInput extends GetInteractionById {}
+export interface GetPublicationInteractionDomainServiceInput extends GetInteractionById {}
+
+interface ReadItems {
+    organization: OrganizationDomainEntity
+}
+
+export interface ReadNeededItemsDomainServiceInput extends ReadItems {}
+export interface ReadProvidedItemsDomainServiceInput extends ReadItems {}
+
+interface GetItemById {
+    organization: OrganizationDomainEntity
+    itemId: string
+}
+
+export interface GetNeededItemDomainServiceInput extends GetItemById {}
+export interface GetProvidedItemDomainServiceInput extends GetItemById {}

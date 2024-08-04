@@ -28,19 +28,19 @@ describe('(Unit Test) OrganizationDomainService', () => {
         social: {
             linkedin: new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(
                 "https://www.linkedin.com/company/pulse-mais/",
-                "Pulse Mais"
+               
             ),
             instagram: new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(
                 "https://www.instagram.com/PulseMais/",
-                "Pulse Mais"
+               
             ),
             twitter: new SocialNetworkValueObject<TwitterSocialNetworkValueObject>(
                 "https://twitter.com/PulseMais/",
-                "Pulse Mais"
+                
             ),
             facebook: new SocialNetworkValueObject<FacebookSocialNetworkValueObject>(
                 "https://www.facebook.com/PulseMais/",
-                "Pulse Mais"
+                
             )
         }
     };
