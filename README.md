@@ -1,12 +1,23 @@
-# Ajuda Aí: Conectando ONGs
-<i>Projeto Hackathon Kipperdev - 02 a 04/08</i>
+<div align="center"><img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Ajuda%20ai%20Logo.svg" alt="Ajuda Aí" width="40%"></div>
+<div align="center"><i>Projeto Hackathon Kipperdev - 02 a 04/08</i></div>
 
-Olá a todos,
-É com grande entusiasmo que apresentamos o Ajuda Aí, uma plataforma inovadora e colaborativa criada para enfrentar os desafios que surgem após desastres naturais. Nosso objetivo é conectar pessoas e comunidades afetadas com recursos essenciais e suporte voluntário, promovendo uma rede de solidariedade eficaz e compassiva.
+<div style="display: inline-block" align="center">
 
-## O que é o Ajuda Aí?
+<br>
+  
+<b>Olá a todos,</b>
+<div>É com grande entusiasmo que apresentamos o Ajuda Aí, uma plataforma inovadora e colaborativa criada para enfrentar os desafios que surgem após desastres naturais. Nosso objetivo é conectar pessoas e comunidades afetadas com recursos essenciais e suporte voluntário, promovendo uma rede de solidariedade eficaz e compassiva.</div>
+
+<img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Foto%20A.png" alt="Imagem de pessoas carregando caixas" width="40%">
+</div>
+
+
+## 🤔 O que é o Ajuda Aí?
 
 O Ajuda Aí é uma plataforma dedicada à troca e doação de mantimentos, móveis e outros itens necessários para aqueles que sofreram com desastres naturais. Além disso, oferece um espaço onde as comunidades podem procurar e se conectar com voluntários dispostos a ajudar.
+<div style="display: inline-block" align="center">
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Foto%20B.png" alt="Pessoas arrumando doações" width="40%">
+</div>
 
 <b>Como funciona?</b>
 
@@ -15,21 +26,20 @@ O Ajuda Aí é uma plataforma dedicada à troca e doação de mantimentos, móve
 3. <b>Voluntariado:</b> Voluntários podem se cadastrar e se candidatar para auxiliar nas áreas onde há maior demanda. Através da nossa plataforma, é possível encontrar oportunidades de ajudar em tarefas como a distribuição de alimentos, organização de doações, e até apoio emocional.
 4. <b>Conexão e Coordenação:</b> O Ajuda Aí atua como um ponto de encontro virtual onde doadores, necessitados e voluntários podem se comunicar diretamente, coordenar esforços e maximizar o impacto da ajuda oferecida.
 
-## Nossa Missão
+## ✨ Nossa Missão
 A missão do <b>Ajuda Aí</b> é criar uma rede de apoio que transforma a solidariedade em ação concreta. Queremos garantir que a ajuda chegue de forma rápida e eficiente para aqueles que mais precisam, e que os voluntários possam oferecer seu apoio de maneira organizada e eficaz.
 
-## Desenvolvimento
+## ⚙️ Desenvolvimento
 
-## Identidade Visual
+## 🎨 Identidade Visual
 
-## Ferramentas utilizadas
+## 🛠️ Ferramentas utilizadas
 
 <div style="display: inline-block" align="left">
   <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/excalidraw.png" alt="Excalidraw" width="3%">
 <b>Excalidraw</b>: O Excalidraw foi utilizado para rabiscar ideias que tivemos. É uma ferramenta muito versátil para ideias e esquemas, vale a pena conferir.
 </div>
 
-<br>
 <br>
 
 <div style="display: inline-block" align="left">
@@ -38,7 +48,6 @@ A missão do <b>Ajuda Aí</b> é criar uma rede de apoio que transforma a solida
 </div>
 
 <br>
-<br>
 
 <div style="display: inline-block" align="left">
   <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/pesquisa.png" alt="Google" width="2%">
@@ -46,14 +55,13 @@ A missão do <b>Ajuda Aí</b> é criar uma rede de apoio que transforma a solida
 </div>
 
 <br>
-<br>
 
 <div style="display: inline-block" align="left">
   <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/programacao.png" alt="Café com símbolo de código" width="2%">
 <b>NextJS, TailwindCSS, NodeJS, Typescript</b>: O código foi construído com a magia dessas tecnologias.
 </div>
 
-## Um oferecimento Coda_Fofos
+##  
 <div style="display: inline-block" align="center">
   <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/coda_fofos.svg" alt="Coda Fofos" width="25%">
 </div>
