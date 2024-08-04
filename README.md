@@ -33,7 +33,7 @@ A missão do <b>Ajuda Aí</b> é criar uma rede de apoio que transforma a solida
   <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Foto%20C.png" alt="Imagem de crianças" width="40%">
 </div>
 
-## ⚙️ Desenvolvimento
+## ⚙️ Desenvolvimento e Funcionalidades
 Primeiro foi desenvolvido o Wireframe e Protótipo após a discussão e estruturação da ideia (você pode acessar o nosso protótipo [aqui](https://www.figma.com/design/xkuOYcEVXBGjsdERK4xwKn/Ajuda-A%C3%AD---Coda-Fofos-%7C-Hackathon-Kipperdev?node-id=0-1&t=7VZJ6t6AjpiftZrY-1)).
 
 ## 🎨 Identidade Visual
