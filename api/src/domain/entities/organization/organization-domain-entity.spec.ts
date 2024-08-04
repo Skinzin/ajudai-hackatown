@@ -46,7 +46,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
             photo: "https://example.com/photo.jpg",
         },
         content: "aaaaaaaaaaaaaaaaaaaaaaaaaa",
-        publish: {
+        publication: {
             content: {
                 subject: "subject",
                 text: "text",

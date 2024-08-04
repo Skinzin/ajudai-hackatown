@@ -4,14 +4,14 @@ import { ReplyEntity } from "../../replies/types/reply-entity";
 
 export interface CreateCommentEntityInput {
     organization: Pick<OrganizationEntity, "id" | "name" | "photo" | "area">;
-    publish: Pick<PublicationDomainEntity, "content">;
+    publication: Pick<PublicationDomainEntity, "content">;
     content: string;
 }
 
 export interface RestoreCommentEntityInput {
     id: string;
     organization: Pick<OrganizationEntity, "id" | "name" | "photo" | "area">;
-    publish: Pick<PublicationDomainEntity, "content">;
+    publication: Pick<PublicationDomainEntity, "content">;
     content: string;
     replies: ReplyEntity[];
     isDeleted: boolean;

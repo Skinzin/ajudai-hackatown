@@ -9,7 +9,7 @@ import { CreateCommentEntityInput, RestoreCommentEntityInput } from './types/com
 export class CommentDomainEntity implements CommentEntity {
     id?: string;
     organization?: Pick<OrganizationEntity, "id" | "name" | "photo" | "area">;
-    publish?: Pick<PublicationDomainEntity, "content">;
+    publication?: Pick<PublicationDomainEntity, "content">;
     content?: string;
     replies?: ReplyEntity[];
     createdAt?: Date;
@@ -24,7 +24,7 @@ export class CommentDomainEntity implements CommentEntity {
 
         comment.setId(crypto.randomUUID());
         comment.setOrganization(input.organization);
-        comment.setPublish(input.publish);
+        comment.setPublication(input.publication);
         comment.setContent(input.content);
         comment.setReplies([]);
         comment.setIsDeleted(false);
@@ -39,7 +39,7 @@ export class CommentDomainEntity implements CommentEntity {
 
         comment.setId(input.id);
         comment.setOrganization(input.organization);
-        comment.setPublish(input.publish);
+        comment.setPublication(input.publication);
         comment.setContent(input.content);
         comment.setReplies(input.replies);
         comment.setIsDeleted(input.isDeleted);
@@ -82,20 +82,20 @@ export class CommentDomainEntity implements CommentEntity {
         this.organization = organization;
     }
 
-    public getPublish(): Pick<PublicationDomainEntity, "content"> | undefined {
-        return this.publish;
+    public getpublication(): Pick<PublicationDomainEntity, "content"> | undefined {
+        return this.publication;
     }
 
-    public setPublish(publish: Pick<PublicationDomainEntity, "content">): void {
-        if (!publish) {
+    public setPublication(publication: Pick<PublicationDomainEntity, "content">): void {
+        if (!publication) {
             throw new InvalidCommentPropertyDomainException(
                 'comment-domain-entity.ts',
                 45,
-                'publish.content',
+                'publication.content',
                 'O conteúdo da publicação não pode ser vazio.'
             );
         }
-        this.publish = publish;
+        this.publication = publication;
     }
 
     public getContent(): string | undefined {

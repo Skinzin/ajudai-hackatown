@@ -80,7 +80,7 @@ describe('(Unit Test) OrganizationDomainService', () => {
                 photo: organization.getPhoto()!,
                 area: organization.getArea()!
             },
-            publish: {
+            publication: {
                 content: {
                     subject: 'subject',
                     text: 'text'
@@ -139,7 +139,7 @@ describe('(Unit Test) OrganizationDomainService', () => {
                 photo: organization.getPhoto()!,
                 area: organization.getArea()!
             },
-            publish: {
+            publication: {
                 content: {
                     subject: 'subject',
                     text: 'text'
