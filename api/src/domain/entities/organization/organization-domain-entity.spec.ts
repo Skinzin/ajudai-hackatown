@@ -2,7 +2,7 @@ import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptio
 import { OrganizationDomainEntity } from "./organization-domain-entity";
 import { CreateOrganizationInput, RestoreOrganizationInput } from "@/domain/entities/organization/types/organization-domain-entity-inputs";
 import { PhoneValueObject } from "../value-objects/phone-value-object";
-import { AdressValueObject } from "../value-objects/adress-value-object";
+import { AddressValueObject } from "../value-objects/address-value-object";
 import { SocialNetworkValueObject } from "../value-objects/social-networking-value-object";
 import { LinkedinSocialNetworkValueObject } from "../value-objects/linkedin-social-network-value-object";
 import { InstagramSocialNetworkValueObject } from "../value-objects/instragram-social-network-value-object";
@@ -26,7 +26,8 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
         area: "Animais de Rua",
         about: "About the organization",
         email: "test@organization.com",
-        adress: new AdressValueObject(),
+        password: "123456",
+        Address: new AddressValueObject(),
         phone: new PhoneValueObject("+1234567890", true, true, false),
         photo: "https://example.com/photo.jpg",
         social: {
@@ -68,6 +69,9 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
             replies: [],
         },
 
+        address: new AddressValueObject(),
+        password: "123456",
+
         isActive: true,
         isNeedSomeItems: true,
         isNeedVoluntarys: false,
@@ -95,7 +99,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
         expect(organization.getEmail()).toEqual("test@organization.com");
         expect(organization.getArea()).toEqual("Animais de Rua");
         expect(organization.getAbout()).toEqual("About the organization");
-        expect(organization.getAdress()).toEqual(input.adress);
+        expect(organization.getAddress()).toEqual(input.Address);
         expect(organization.getPhone()).toEqual(input.phone);
         expect(organization.getPhoto()).toEqual("https://example.com/photo.jpg");
     });
@@ -164,7 +168,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
         expect(organization.getEmail()).toEqual("test@organization.com");
         expect(organization.getArea()).toEqual("Animais de Rua");
         expect(organization.getAbout()).toEqual("About the organization");
-        expect(organization.getAdress()).toEqual(defaultRestoreOrganizationInput.adress);
+        expect(organization.getAddress()).toEqual(defaultRestoreOrganizationInput.address);
         expect(organization.getPhone()).toEqual(defaultRestoreOrganizationInput.phone);
         expect(organization.getPhoto()).toEqual("https://example.com/photo.jpg");
         expect(organization.getInterations()).toEqual(defaultRestoreOrganizationInput.interations);

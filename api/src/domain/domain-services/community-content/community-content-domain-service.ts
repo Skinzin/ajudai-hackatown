@@ -6,7 +6,7 @@ export class CommunityContentDomainService {
     constructor() {}
 
     createPublication(input: CreatePublicationDomainServiceInput): PublicationDomainEntity {
-        const publication = new PublicationDomainEntity();
+        const publication = PublicationDomainEntity.create(input);
 
         return publication;
     }

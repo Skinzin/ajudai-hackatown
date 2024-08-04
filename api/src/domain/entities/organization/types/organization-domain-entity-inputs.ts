@@ -1,4 +1,4 @@
-import { AdressValueObject } from "../../value-objects/adress-value-object";
+import { AddressValueObject } from "../../value-objects/address-value-object";
 import { EmptySocialNetworkValueObject } from "../../value-objects/empty-social-network-value-object";
 import { InstagramSocialNetworkValueObject } from "../../value-objects/instragram-social-network-value-object";
 import { LinkedinSocialNetworkValueObject } from "../../value-objects/linkedin-social-network-value-object";
@@ -11,9 +11,10 @@ export interface CreateOrganizationInput {
     area: string;
     about: string;
     email: string;
+    password: string;
     photo: string;
 
-    adress: AdressValueObject;
+    Address: AddressValueObject;
     phone: PhoneValueObject;
     social: {
         linkedin: SocialNetworkValueObject<LinkedinSocialNetworkValueObject | EmptySocialNetworkValueObject>;

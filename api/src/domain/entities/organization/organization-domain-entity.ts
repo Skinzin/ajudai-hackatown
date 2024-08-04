@@ -5,7 +5,7 @@ import { PublicationDomainEntity } from "../community-content/publications/publi
 import { ReplyDomainEntity } from "../community-content/replies/reply-domain-entity";
 import { ReplyEntity } from "../community-content/replies/types/reply-entity";
 import { ItemEntity } from "../contributions/item/item-entity";
-import { AdressValueObject } from "../value-objects/adress-value-object";
+import { AddressValueObject } from "../value-objects/address-value-object";
 import { EmptySocialNetworkValueObject } from "../value-objects/empty-social-network-value-object";
 import { InstagramSocialNetworkValueObject } from "../value-objects/instragram-social-network-value-object";
 import { LinkedinSocialNetworkValueObject } from "../value-objects/linkedin-social-network-value-object";
@@ -21,7 +21,7 @@ export class OrganizationDomainEntity {
     private name?: string;
     private about?: string;
     private description?: string;
-    private adress?: AdressValueObject;
+    private Address?: AddressValueObject;
 
     private area?: string;
     private email?: string;
@@ -146,7 +146,7 @@ export class OrganizationDomainEntity {
         organization.setArea(input.area);
         organization.setAbout(input.about);
         organization.setEmail(input.email);
-        organization.setAdress(input.adress);
+        organization.setAddress(input.Address);
         organization.setPhone(input.phone);
         organization.setPhoto(input.photo);
         organization.setSocial(input.social);
@@ -182,7 +182,7 @@ export class OrganizationDomainEntity {
         organization.setArea(input.area);
         organization.setAbout(input.about);
         organization.setEmail(input.email);
-        organization.setAdress(input.adress);
+        organization.setAddress(input.address);
 
         organization.setPhoto(input.photo);
         organization.setPhone(input.phone);
@@ -385,12 +385,12 @@ export class OrganizationDomainEntity {
         this.description = description;
     }
 
-    public getAdress(): AdressValueObject | undefined {
-        return this.adress;
+    public getAddress(): AddressValueObject | undefined {
+        return this.Address;
     }
 
-    public setAdress(adress: AdressValueObject): void {
-        this.adress = adress;
+    public setAddress(Address: AddressValueObject): void {
+        this.Address = Address;
     }
 
     public getArea(): string | undefined {

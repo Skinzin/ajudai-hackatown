@@ -2,7 +2,7 @@ import { CommentEntity } from "../../community-content/comments/types/comment-en
 import { PublicationDomainEntity } from "../../community-content/publications/publication-domain-entity";
 import { ReplyEntity } from "../../community-content/replies/types/reply-entity";
 import { ItemEntity } from "../../contributions/item/item-entity";
-import { AdressValueObject } from "../../value-objects/adress-value-object";
+import { AddressValueObject } from "../../value-objects/address-value-object";
 import { EmptySocialNetworkValueObject } from "../../value-objects/empty-social-network-value-object";
 import { InstagramSocialNetworkValueObject } from "../../value-objects/instragram-social-network-value-object";
 import { LinkedinSocialNetworkValueObject } from "../../value-objects/linkedin-social-network-value-object";
@@ -16,8 +16,9 @@ export interface OrganizationEntity {
     area: string
     about: string
     email: string
+    password: string;
     photo: string
-    adress: AdressValueObject
+    address: AddressValueObject
     phone: PhoneValueObject
     
     interations: {
