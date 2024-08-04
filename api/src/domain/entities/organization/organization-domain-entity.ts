@@ -2,6 +2,7 @@ import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptio
 import { CommentDomainEntity } from "../community-content/comments/comment-domain-entity";
 import { CommentEntity } from "../community-content/comments/types/comment-entity";
 import { PublicationDomainEntity } from "../community-content/publications/publication-domain-entity";
+import { ReplyDomainEntity } from "../community-content/replies/reply-domain-entity";
 import { ReplyEntity } from "../community-content/replies/types/reply-entity";
 import { ItemEntity } from "../contributions/item/item-entity";
 import { AdressValueObject } from "../value-objects/adress-value-object";
@@ -10,8 +11,8 @@ import { InstagramSocialNetworkValueObject } from "../value-objects/instragram-s
 import { LinkedinSocialNetworkValueObject } from "../value-objects/linkedin-social-network-value-object";
 import { PhoneValueObject } from "../value-objects/phone-value-object";
 import { SocialNetworkValueObject } from "../value-objects/social-networking-value-object";
-import { CreateOrganizationInput } from "./types/create-organization-input";
-import { RestoreOrganizationInput } from "./types/restore-organization-input";
+import { CreateOrganizationInput, RestoreOrganizationInput } from "./types/organization-domain-entity-inputs";
+
 
 
 export class OrganizationDomainEntity {
@@ -53,7 +54,7 @@ export class OrganizationDomainEntity {
 
     private constructor() { }
 
-    public addInteraction(interaction: PublicationDomainEntity | CommentDomainEntity | ReplyEntity): OrganizationDomainEntity {
+    public addInteraction(interaction: PublicationDomainEntity | CommentDomainEntity | ReplyEntity) {
 
         if (interaction instanceof PublicationDomainEntity) {
             this.addPublicationInteraction(interaction);
@@ -61,19 +62,23 @@ export class OrganizationDomainEntity {
 
         if (interaction instanceof CommentDomainEntity) {
             this.addCommentInteraction(interaction);
-        } 
-        
-        if (interaction instanceof ReplyEntity) {
-            // this.interations.replies.push(interaction);
-        } 
+        }
 
-        // if (interaction !instanceof CommentEntity || interaction !instanceof PublicationDomainEntity || interaction !instanceof ReplyEntity) {
-        //     throw new Error("Invalid interaction type, criar exception personalizada dps.");
-        // }
-
+        if (interaction instanceof ReplyDomainEntity) {
+            this.addReplyInteraction(interaction);
+        }
     }
 
     private addPublicationInteraction(publication: PublicationDomainEntity): void {
+        if (!publication.organization) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                255,
+                "interations.publications",
+                "A publicação não pode ser vazia."
+            );
+        }
+
         if (!publication.organization.id || publication.organization.id !== this.id) {
             throw new InvalidOrganizationPropetyDomainException(
                 "organization-domain-entity.ts",
@@ -87,6 +92,15 @@ export class OrganizationDomainEntity {
     }
 
     private addCommentInteraction(comment: CommentEntity): void {
+        if (!comment.organization) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                255,
+                "interations.comments",
+                "O comentário não pode ser vazio."
+            );
+        }
+
         if (!comment.organization.id || comment.organization.id !== this.id) {
             throw new InvalidOrganizationPropetyDomainException(
                 "organization-domain-entity.ts",
@@ -100,6 +114,15 @@ export class OrganizationDomainEntity {
     }
 
     private addReplyInteraction(reply: ReplyEntity): void {
+        if (!reply.organization) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                265,
+                "interations.replies",
+                "A resposta não pode ser vazia."
+            );
+        }
+
         if (!reply.organization.id || reply.organization.id !== this.id) {
             throw new InvalidOrganizationPropetyDomainException(
                 "organization-domain-entity.ts",
@@ -432,6 +455,15 @@ export class OrganizationDomainEntity {
 
         const publications = interations.publications
         for (const publication of publications) {
+            if (!publication.organization) {
+                throw new InvalidOrganizationPropetyDomainException(
+                    "organization-domain-entity.ts",
+                    255,
+                    "interations.publications",
+                    "A publicação não pode ser vazia."
+                );
+            }
+
             if (!publication.organization.id || publication.organization.id !== this.id) {
                 throw new InvalidOrganizationPropetyDomainException(
                     "organization-domain-entity.ts",
@@ -444,6 +476,15 @@ export class OrganizationDomainEntity {
 
         const comments = interations.comments;
         for (const comment of comments) {
+            if (!comment.organization) {
+                throw new InvalidOrganizationPropetyDomainException(
+                    "organization-domain-entity.ts",
+                    255,
+                    "interations.comments",
+                    "O comentário não pode ser vazio."
+                );
+            }
+
             if (!comment.organization.id || comment.organization.id !== this.id) {
                 throw new InvalidOrganizationPropetyDomainException(
                     "organization-domain-entity.ts",
@@ -456,6 +497,15 @@ export class OrganizationDomainEntity {
 
         const replies = interations.replies;
         for (const reply of replies) {
+            if (!reply.organization) {
+                throw new InvalidOrganizationPropetyDomainException(
+                    "organization-domain-entity.ts",
+                    265,
+                    "interations.replies",
+                    "A resposta não pode ser vazia."
+                );
+            }
+
             if (!reply.organization.id || reply.organization.id !== this.id) {
                 throw new InvalidOrganizationPropetyDomainException(
                     "organization-domain-entity.ts",

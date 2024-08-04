@@ -17,7 +17,7 @@ export class CommentDomainEntity implements CommentEntity {
     isDeleted?: boolean;
     isEdited?: boolean;
 
-    private constructor() {}
+    private constructor() { }
 
     static create(input: CreateCommentEntityInput): CommentDomainEntity {
         const comment = new CommentDomainEntity();
@@ -103,14 +103,45 @@ export class CommentDomainEntity implements CommentEntity {
     }
 
     public setContent(content: string): void {
-        if (!content || content.length < 1 || content.length > 500) {
+        if (!content) {
             throw new InvalidCommentPropertyDomainException(
-                'comment-domain-entity.ts',
-                55,
-                'content',
-                'O conteúdo do comentário deve ter entre 1 e 500 caracteres.'
-            );
+                "comment-domain-entity.ts",
+                114,
+                "content",
+                `A descrição não pode ser vazia!`
+            )
         }
+
+        const invalidCharacters = /[^a-zA-Z\u00C0-\u00FF0-9\s ?!.,"'-]/;
+        const hasInvalidCharacters = content.match(invalidCharacters);
+
+        if (hasInvalidCharacters) {
+            throw new InvalidCommentPropertyDomainException(
+                "comment-domain-entity.ts",
+                126,
+                "content",
+                `A descrição contém caracteres inválidos. \n Caracteres inválidos encontrados: ${hasInvalidCharacters}`
+            )
+        }
+
+        if (/(\d{10,})/.test(content)) {
+            throw new InvalidCommentPropertyDomainException(
+                "comment-domain-entity.ts",
+                135,
+                "content",
+                `a descrição não pode conter sequências numéricas muito longas.`
+            )
+        }
+
+        if (this.verifyIfContainsSwearsWords(content)) {
+            throw new InvalidCommentPropertyDomainException(
+                "comment-domain-entity.ts",
+                144,
+                "content",
+                `a descrição contém palavras de baixo calão.`
+            )
+        }
+
         this.content = content;
     }
 
@@ -175,5 +206,17 @@ export class CommentDomainEntity implements CommentEntity {
             this.replies = [];
         }
         this.replies.push(reply);
+    }
+
+    private verifyIfContainsSwearsWords(str: string): boolean {
+
+        const swearWords = ["caralho", "porra", "sexo", "piroca", "puta", "pinto", "buceta", "pênis", "cu"];
+
+        const containsSwearWords: boolean = swearWords.some(swear => str.toLowerCase().split(' ').includes(swear));
+        if (containsSwearWords) {
+            return true
+        }
+
+        return false
     }
 }
