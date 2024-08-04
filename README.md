@@ -1,4 +1,4 @@
-# Ajuda Aí
+# Ajuda Aí: Conectando ONGs
 <i>Projeto Hackathon Kipperdev - 02 a 04/08</i>
 
 Olá a todos,
@@ -25,30 +25,35 @@ A missão do <b>Ajuda Aí</b> é criar uma rede de apoio que transforma a solida
 ## Ferramentas utilizadas
 
 <div style="display: inline-block" align="left">
-  <img src="https://github.com/gabrielaasouza/Clone-do-Instagram/blob/main/Imagens/ellie.png" alt="Post da Ellie" width="5%">
-<b>Excalidraw</b>b>: O Excalidraw foi utilizado para rabiscar ideias que tivemos. É uma ferramenta muito versátil para ideias e esquemas, vale a pena conferir.
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/excalidraw.png" alt="Excalidraw" width="3%">
+<b>Excalidraw</b>: O Excalidraw foi utilizado para rabiscar ideias que tivemos. É uma ferramenta muito versátil para ideias e esquemas, vale a pena conferir.
 </div>
 
 <br>
 <br>
 
 <div style="display: inline-block" align="left">
-  <img src="https://github.com/gabrielaasouza/Clone-do-Instagram/blob/main/Imagens/ellie.png" alt="Post da Ellie" width="5%">
-<b>Figma</b>b>: Utilizado para a concepçao do Wireframe e Protótipo do projeto (tentamos utilizar o poder da mente, mas não funcionou muito bem).
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/figma.png" alt="Figma" width="2%">
+<b>Figma</b>: Utilizado para a concepçao do Wireframe e Protótipo do projeto (tentamos utilizar o poder da mente, mas não funcionou muito bem).
 </div>
 
 <br>
 <br>
 
 <div style="display: inline-block" align="left">
-  <img src="https://github.com/gabrielaasouza/Clone-do-Instagram/blob/main/Imagens/ellie.png" alt="Post da Ellie" width="5%">
-<b>Drive e Google Docs</b>b>: Utilizamos esses serviços do Google para organizar documentos que criamos para o projeto, como Documentações das etapas e ideias.
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/pesquisa.png" alt="Google" width="2%">
+<b>Drive e Google Docs</b>: Utilizamos esses serviços do Google para organizar documentos que criamos para o projeto, como Documentações das etapas e ideias.
 </div>
 
 <br>
 <br>
 
 <div style="display: inline-block" align="left">
-  <img src="https://github.com/gabrielaasouza/Clone-do-Instagram/blob/main/Imagens/ellie.png" alt="Post da Ellie" width="5%">
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/programacao.png" alt="Café com símbolo de código" width="2%">
 <b>NextJS, TailwindCSS, NodeJS, Typescript</b>: O código foi construído com a magia dessas tecnologias.
+</div>
+
+## Um oferecimento Coda_Fofos
+<div style="display: inline-block" align="center">
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/coda_fofos.svg" alt="Coda Fofos" width="25%">
 </div>
