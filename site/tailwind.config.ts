@@ -15,7 +15,19 @@ const config: Config = {
       },
       borderWidth: {
         1: "1px",
-      }
+      },
+      keyframes: {
+        jump: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-100%)' },
+        },
+      },
+      animation: {
+        'jump-1': 'jump 800ms ease-in-out calc(800ms * -0.45) infinite',
+        'jump-2': 'jump 800ms ease-in-out calc(800ms * -0.3) infinite',
+        'jump-3': 'jump 800ms ease-in-out calc(800ms * -0.15) infinite',
+        'jump-4': 'jump 800ms ease-in-out infinite',
+      },
     },
   },
   plugins: [],
