@@ -4,7 +4,7 @@ import { CommentEntity } from "../community-content/comments/types/comment-entit
 import { PublicationDomainEntity } from "../community-content/publications/publication-domain-entity";
 import { ReplyDomainEntity } from "../community-content/replies/reply-domain-entity";
 import { ReplyEntity } from "../community-content/replies/types/reply-entity";
-import { ItemEntity } from "../contributions/item/item-entity";
+import { ItemEntity } from "../contributions/item/types/item-entity";
 import { AddressValueObject } from "../value-objects/address-value-object";
 import { EmptySocialNetworkValueObject } from "../value-objects/empty-social-network-value-object";
 import { InstagramSocialNetworkValueObject } from "../value-objects/instragram-social-network-value-object";
@@ -563,6 +563,15 @@ export class OrganizationDomainEntity {
 
         const needs = items.needs;
         for (const neededItems of needs) {
+            if (!neededItems.organization) {
+                throw new InvalidOrganizationPropetyDomainException(
+                    "organization-domain-entity.ts",
+                    431,
+                    "items.provide",
+                    "O item de necessidade não pode ser vazio."
+                );
+            }
+
             if (!neededItems.organization.id || neededItems.organization.id !== this.id) {
                 throw new InvalidOrganizationPropetyDomainException(
                     "organization-domain-entity.ts",
@@ -584,6 +593,15 @@ export class OrganizationDomainEntity {
 
         const providedItems = items.provide;
         for (const item of providedItems) {
+            if (!item.organization) {
+                throw new InvalidOrganizationPropetyDomainException(
+                    "organization-domain-entity.ts",
+                    431,
+                    "items.provide",
+                    "O item de doação não pode ser vazio."
+                );
+            }
+
             if (!item.organization.id || item.organization.id !== this.id) {
                 throw new InvalidOrganizationPropetyDomainException(
                     "organization-domain-entity.ts",
