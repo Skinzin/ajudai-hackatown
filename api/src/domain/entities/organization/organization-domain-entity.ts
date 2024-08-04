@@ -2,7 +2,7 @@ import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptio
 import { CommentDomainEntity } from "../community-content/comments/comment-domain-entity";
 import { PublicationDomainEntity } from "../community-content/publications/publication-domain-entity";
 import { ReplyDomainEntity } from "../community-content/replies/reply-domain-entity";
-import { ItemEntity } from "../contributions/item/types/item-entity";
+import { ItemDomainEntity } from "../contributions/item/item-domain-entity";
 import { AddressValueObject } from "../value-objects/address-value-object";
 import { EmptySocialNetworkValueObject } from "../value-objects/empty-social-network-value-object";
 import { FacebookSocialNetworkValueObject } from "../value-objects/facebook-value-object";
@@ -36,8 +36,8 @@ export class OrganizationDomainEntity {
     };
 
     private items?: {
-        needs: ItemEntity[];
-        provide: ItemEntity[];
+        needs: ItemDomainEntity[];
+        provide: ItemDomainEntity[];
     };
 
     private social?: {
@@ -589,9 +589,8 @@ export class OrganizationDomainEntity {
     }
 
     public setItems(items: {
-        needs: ItemEntity[],
-        provide: ItemEntity[]
-
+        needs: ItemDomainEntity[],
+        provide: ItemDomainEntity[]
     }): void {
 
         const needs = items.needs;
@@ -698,54 +697,6 @@ export class OrganizationDomainEntity {
             facebook: SocialNetworkValueObject<FacebookSocialNetworkValueObject> | EmptySocialNetworkValueObject,
         }
     ): void {
-
-        if (social.linkedin instanceof SocialNetworkValueObject) {
-            const nameInSocialNetwork = social.linkedin.nameInSocialNetwork;
-            if (!nameInSocialNetwork.includes(this.name!)) {
-                throw new InvalidOrganizationPropetyDomainException(
-                    "organization-domain-entity.ts",
-                    465,
-                    "social.linkedin.nameInSocialNetwork",
-                    `O nome da conta do Linkedin não contém o nome da organização!`
-                );
-            }
-        }
-
-        if (social.instagram instanceof SocialNetworkValueObject) {
-            const nameInSocialNetwork = social.instagram.nameInSocialNetwork;
-            if (!nameInSocialNetwork.includes(this.name!)) {
-                throw new InvalidOrganizationPropetyDomainException(
-                    "organization-domain-entity.ts",
-                    475,
-                    "social.instagram.nameInSocialNetwork",
-                    `O nome da conta do Instagram não contém o nome da organização!`
-                );
-            }
-        }
-
-        if (social.twitter instanceof SocialNetworkValueObject) {
-            const nameInSocialNetwork = social.twitter.nameInSocialNetwork;
-            if (!nameInSocialNetwork.includes(this.name!)) {
-                throw new InvalidOrganizationPropetyDomainException(
-                    "organization-domain-entity.ts",
-                    485,
-                    "social.twitter.nameInSocialNetwork",
-                    `O nome da conta do Twitter não contém o nome da organização!`
-                );
-            }
-        }
-
-        if (social.facebook instanceof SocialNetworkValueObject) {
-            const nameInSocialNetwork = social.facebook.nameInSocialNetwork;
-            if (!nameInSocialNetwork.includes(this.name!)) {
-                throw new InvalidOrganizationPropetyDomainException(
-                    "organization-domain-entity.ts",
-                    495,
-                    "social.facebook.nameInSocialNetwork",
-                    `O nome da conta do Facebook não contém o nome da organização!`
-                );
-            }
-        }
 
         this.social = social;
     }

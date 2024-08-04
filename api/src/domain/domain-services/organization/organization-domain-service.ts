@@ -1,5 +1,5 @@
 import { OrganizationDomainEntity } from "@/domain/entities/organization/organization-domain-entity";
-import { CreateOrganizationDomainServiceInput, DeleteOrganizationDomainServiceInput, GetCommentInteractionDomainServiceInput, GetPublicationInteractionDomainServiceInput, GetReplyInteractionDomainServiceInput, ReadCommentsInteractionsDomainServiceInput, ReadPublicationsInteractionsDomainServiceInput, ReadRepliesInteractionsDomainServiceInput, SaveInteractionDomainServiceInput, UpdateOrganizationDomainServiceInput } from "./types/organization-domain-service-inputs";
+import { CreateOrganizationDomainServiceInput, DeleteOrganizationDomainServiceInput, GetCommentInteractionDomainServiceInput, GetNeededItemDomainServiceInput, GetProvidedItemDomainServiceInput, GetPublicationInteractionDomainServiceInput, GetReplyInteractionDomainServiceInput, ReadCommentsInteractionsDomainServiceInput, ReadNeededItemsDomainServiceInput, ReadProvidedItemsDomainServiceInput, ReadPublicationsInteractionsDomainServiceInput, ReadRepliesInteractionsDomainServiceInput, SaveInteractionDomainServiceInput, UpdateOrganizationDomainServiceInput } from "./types/organization-domain-service-inputs";
 import { CommentDomainEntity } from "@/domain/entities/community-content/comments/comment-domain-entity";
 import { ReplyDomainEntity } from "@/domain/entities/community-content/replies/reply-domain-entity";
 import { PublicationDomainEntity } from "@/domain/entities/community-content/publications/publication-domain-entity";
@@ -56,6 +56,8 @@ export class OrganizationDomainService {
         }
 
         actualData.setUpdatedAt(new Date());
+
+        return actualData;
     }
 
     deleteOrganization(input: DeleteOrganizationDomainServiceInput) {
@@ -67,6 +69,7 @@ export class OrganizationDomainService {
         for (const publication of publications) {
             publication.setIsDeleted(true);
         }
+
 
         const comments = interactions!.comments;
         for (const comment of comments) {
@@ -133,20 +136,16 @@ export class OrganizationDomainService {
 
     getNeededItem(input: GetNeededItemDomainServiceInput) {
         const { organization, itemId } = input;
+        const items = this.readNeededItems({ organization });
 
-        const items = organization.getItems()!;
-        const neededItems = items.needs;
-
-        return neededItems.find(item => item.getId() === itemId);
+        return items.find(item => item.getId() === itemId);
     }
 
     getProvidedItem(input: GetProvidedItemDomainServiceInput) {
         const { organization, itemId } = input;
+        const items = this.readNeededItems({ organization });
 
-        const items = organization.getItems()!;
-        const providedItems = items.provide;
-
-        return providedItems.find(item => item.getId() === itemId);
+        return items.find(item => item.getId() === itemId);
     }
 
     readNeededItems(input: ReadNeededItemsDomainServiceInput) {

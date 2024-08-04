@@ -1,6 +1,7 @@
 import { CommentDomainEntity } from "../../community-content/comments/comment-domain-entity";
 import { PublicationDomainEntity } from "../../community-content/publications/publication-domain-entity";
 import { ReplyDomainEntity } from "../../community-content/replies/reply-domain-entity";
+import { ItemDomainEntity } from "../../contributions/item/item-domain-entity";
 import { ItemEntity } from "../../contributions/item/types/item-entity";
 import { AddressValueObject } from "../../value-objects/address-value-object";
 import { EmptySocialNetworkValueObject } from "../../value-objects/empty-social-network-value-object";
@@ -31,8 +32,8 @@ export interface OrganizationEntity {
     }
 
     items: {
-        needs: ItemEntity[]
-        provide: ItemEntity[]
+        needs: ItemDomainEntity[]
+        provide: ItemDomainEntity[]
     }
 
     social: {

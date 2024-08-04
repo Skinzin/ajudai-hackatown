@@ -14,12 +14,10 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
 
     const defaultInstagramSocialNetworkValueObject = new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(
         "https://www.instagram.com/PulseMais/",
-        "Pulse Mais"
     );
 
     const defaultLinkedinSocialNetworkValueObject = new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(
         "https://www.linkedin.com/company/pulse-mais/",
-        "Pulse Mais"
     );
 
     const input: CreateOrganizationInput = {
