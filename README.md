@@ -1,11 +1,11 @@
 <div align="center"><img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Ajuda%20ai%20Logo.svg" alt="Ajuda Aí" width="40%"></div>
 <div align="center"><i>Projeto Hackathon Kipperdev - 02 a 04/08</i></div>
 
-<div style="display: inline-block" align="center">
+#  
 
-<br>
+<div style="display: inline-block" align="center">
   
-<b>Olá a todos,</b>
+### <b>Olá a todos!</b>
 <div>É com grande entusiasmo que apresentamos o Ajuda Aí, uma plataforma inovadora e colaborativa criada para enfrentar os desafios que surgem após desastres naturais. Nosso objetivo é conectar pessoas e comunidades afetadas com recursos essenciais e suporte voluntário, promovendo uma rede de solidariedade eficaz e compassiva.</div>
 
 <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Foto%20A.png" alt="Imagem de pessoas carregando caixas" width="40%">
@@ -29,9 +29,36 @@ O Ajuda Aí é uma plataforma dedicada à troca e doação de mantimentos, móve
 ## ✨ Nossa Missão
 A missão do <b>Ajuda Aí</b> é criar uma rede de apoio que transforma a solidariedade em ação concreta. Queremos garantir que a ajuda chegue de forma rápida e eficiente para aqueles que mais precisam, e que os voluntários possam oferecer seu apoio de maneira organizada e eficaz.
 
+<div style="display: inline-block" align="center">
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Foto%20C.png" alt="Imagem de crianças" width="40%">
+</div>
+
 ## ⚙️ Desenvolvimento
 
 ## 🎨 Identidade Visual
+Para a identidade visual procuramos algo que apresentasse o que queríamos, mas também tentamos trabalhar com coisas que queríamos tester (afinal, estamos usando essa oportunidade para aprender). 
+
+### Tipografia
+Para os títulos utilizamos a fonte Nunito, por sua aparência amigável e convidativa. Para o corpo escolhemos a Poppins, por conversar bem com a Nunito e, assim como ela, ter uma ótima legibilidade.
+
+<div style="display: inline-block" align="center">
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Tipografia.png" alt="Exemplo de tipografia" width="80%">
+</div>
+
+### Cores
+Quanto às cores, foram escolhidas tendo em mente o trabalho com ONGs. Tendo isso mente, as cores foram escolhidas pois:
+
+- <b>00A8B5 (Azul Turquesa):</b> O azul turquesa é uma cor que transmite tranquilidade, confiança e segurança. Esses são valores fundamentais para uma plataforma que atua com ONGs, já que confiança e transparência são essenciais para o trabalho com organizações que buscam impactar positivamente a sociedade. O azul também é frequentemente associado a tecnologias e inovações, reforçando a ideia de uma plataforma digital moderna e confiável.
+
+- <b>774898 (Roxo):</b> O roxo é uma cor que representa criatividade, sabedoria e compaixão. Ao trabalhar com ONGs, a plataforma não apenas facilita a logística e as operações, mas também apoia causas que exigem empatia e uma abordagem humanitária. O roxo também pode sugerir uma abordagem inovadora para resolver problemas sociais, trazendo um toque de inspiração e diferenciação à marca.
+
+- <b>E62A76 (Rosa):</b> O rosa é uma cor vibrante que traz um toque de emoção e paixão ao design. Ele é particularmente eficaz para destacar chamadas à ação ou áreas que precisam captar a atenção do usuário. No contexto das ONGs, o rosa pode simbolizar o engajamento e a dedicação às causas sociais, estimulando a conexão emocional com os usuários.
+
+- <b>FBB901 (Amarelo):</b> O amarelo é a cor da alegria, otimismo e energia. Ele é ideal para destacar aspectos positivos e inspiradores da plataforma, como histórias de sucesso, testemunhos ou projetos que estão fazendo a diferença. No contexto das ONGs, o amarelo ajuda a transmitir esperança e o impacto positivo das ações realizadas.
+
+<div style="display: inline-block" align="center">
+  <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Cores.png" alt="Cores escolhidas para o projeto" width="80%">
+</div>
 
 ## 🛠️ Ferramentas utilizadas
 
