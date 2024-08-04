@@ -1,5 +1,5 @@
 <div align="center"><img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Ajuda%20ai%20Logo.svg" alt="Ajuda Aí" width="40%"></div>
-<div align="center"><i>Projeto Hackathon Kipperdev - 02 a 04/08</i></div>
+<div align="center"><i>Projeto Hackathon Kipperdev - 02 a 04/08/2024</i></div>
 
 #  
 
