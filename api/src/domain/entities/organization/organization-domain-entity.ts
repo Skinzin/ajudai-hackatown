@@ -1,6 +1,6 @@
 import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptions/invalid-organization-propety-domain-exception";
 import { CommentEntity } from "../community-content/comments/types/comment-entity";
-import { PublishEntity } from "../community-content/publishes/types/publish-entity";
+import { PublicationDomainEntity } from "../community-content/publications/publication-domain-entity";
 import { ReplyEntity } from "../community-content/replies/types/reply-entity";
 import { ItemEntity } from "../contributions/item/item-entity";
 import { AdressValueObject } from "../value-objects/adress-value-object";
@@ -27,7 +27,7 @@ export class OrganizationDomainEntity {
     private photo?: string;
 
     private interations?: {
-        publishes: PublishEntity[];
+        publications: PublicationDomainEntity[];
         comments: CommentEntity[];
         replies: ReplyEntity[];
     };
@@ -52,6 +52,66 @@ export class OrganizationDomainEntity {
 
     private constructor() { }
 
+    public addInteraction(interaction: PublicationDomainEntity | CommentEntity | ReplyEntity): OrganizationDomainEntity {
+
+        if (interaction instanceof PublicationDomainEntity) {
+            this.addPublicationInteraction(interaction);
+        }
+
+        if (interaction instanceof CommentEntity) {
+            // this.interations.comments.push(interaction);
+        } 
+        
+        if (interaction instanceof ReplyEntity) {
+            // this.interations.replies.push(interaction);
+        } 
+
+        // if (interaction !instanceof CommentEntity || interaction !instanceof PublicationDomainEntity || interaction !instanceof ReplyEntity) {
+        //     throw new Error("Invalid interaction type, criar exception personalizada dps.");
+        // }
+
+    }
+
+    private addPublicationInteraction(publication: PublicationDomainEntity): void {
+        if (!publication.organization.id || publication.organization.id !== this.id) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                245,
+                "interations.publications",
+                "O id presente na publicação não corresponde ao id da organização."
+            );
+        }
+
+        this.interations!.publications.push(publication);
+    }
+
+    private addCommentInteraction(comment: CommentEntity): void {
+        if (!comment.organization.id || comment.organization.id !== this.id) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                255,
+                "interations.comments",
+                "O id presente no comentário não corresponde ao id da organização."
+            );
+        }
+
+        this.interations!.comments.push(comment);
+    }
+
+    private addReplyInteraction(reply: ReplyEntity): void {
+        if (!reply.organization.id || reply.organization.id !== this.id) {
+            throw new InvalidOrganizationPropetyDomainException(
+                "organization-domain-entity.ts",
+                265,
+                "interations.replies",
+                "O id presente na resposta não corresponde ao id da organização."
+            );
+        }
+
+        this.interations!.replies.push(reply);
+    }
+
+
     static create(input: CreateOrganizationInput): OrganizationDomainEntity {
 
         const organization = new OrganizationDomainEntity();
@@ -73,7 +133,7 @@ export class OrganizationDomainEntity {
         organization.setIsActive(true);
 
         organization.setInterations({
-            publishes: [],
+            publications: [],
             comments: [],
             replies: [],
         });
@@ -363,19 +423,19 @@ export class OrganizationDomainEntity {
 
     public setInterations(
         interations: {
-            publishes: PublishEntity[],
+            publications: PublicationDomainEntity[],
             comments: CommentEntity[],
             replies: ReplyEntity[]
         }
     ): void {
 
-        const publishes = interations.publishes;
-        for (const publish of publishes) {
-            if (!publish.organization.id || publish.organization.id !== this.id) {
+        const publications = interations.publications
+        for (const publication of publications) {
+            if (!publication.organization.id || publication.organization.id !== this.id) {
                 throw new InvalidOrganizationPropetyDomainException(
                     "organization-domain-entity.ts",
                     245,
-                    "interations.publishes",
+                    "interations.publications",
                     "O id presente na publicação não corresponde ao id da organização."
                 );
             }

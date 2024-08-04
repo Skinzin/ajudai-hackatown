@@ -1,5 +1,5 @@
 import { OrganizationEntity } from "../../../organization/types/organization-entity"
-import { PublishEntity } from "../../publishes/types/publish-entity"
+import { PublishEntity } from "../../publications/types/publish-entity"
 import { ReplyEntity } from "../../replies/types/reply-entity"
 
 

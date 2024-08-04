@@ -1,5 +1,5 @@
 import { CommentEntity } from "../../community-content/comments/types/comment-entity";
-import { PublishEntity } from "../../community-content/publishes/types/publish-entity";
+import { PublicationDomainEntity } from "../../community-content/publications/publication-domain-entity";
 import { ReplyEntity } from "../../community-content/replies/types/reply-entity";
 import { ItemEntity } from "../../contributions/item/item-entity";
 import { AdressValueObject } from "../../value-objects/adress-value-object";
@@ -21,7 +21,7 @@ export interface OrganizationEntity {
     phone: PhoneValueObject
     
     interations: {
-        publishes: PublishEntity[]
+        publications: PublicationDomainEntity[]
         comments: CommentEntity[]
         replies: ReplyEntity[]
     }

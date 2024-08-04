@@ -4,7 +4,7 @@ import { InstagramSocialNetworkValueObject } from "../../value-objects/instragra
 import { LinkedinSocialNetworkValueObject } from "../../value-objects/linkedin-social-network-value-object";
 import { PhoneValueObject } from "../../value-objects/phone-value-object";
 import { SocialNetworkValueObject } from "../../value-objects/social-networking-value-object";
-
+import { OrganizationEntity } from "./organization-entity";
 
 export interface CreateOrganizationInput {
     name: string;
@@ -20,3 +20,6 @@ export interface CreateOrganizationInput {
         instagram: SocialNetworkValueObject<InstagramSocialNetworkValueObject | EmptySocialNetworkValueObject>;
     };
 }
+
+
+export interface RestoreOrganizationInput extends OrganizationEntity { }   

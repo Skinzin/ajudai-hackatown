@@ -1,7 +1,6 @@
 import { InvalidOrganizationPropetyDomainException } from "../../domain-exceptions/invalid-organization-propety-domain-exception";
 import { OrganizationDomainEntity } from "./organization-domain-entity";
-import { CreateOrganizationInput } from "@/domain/entities/organization/types/create-organization-input";
-import { RestoreOrganizationInput } from "@/domain/entities/organization/types/restore-organization-input";
+import { CreateOrganizationInput, RestoreOrganizationInput } from "@/domain/entities/organization/types/organization-domain-entity-inputs";
 import { PhoneValueObject } from "../value-objects/phone-value-object";
 import { AdressValueObject } from "../value-objects/adress-value-object";
 import { SocialNetworkValueObject } from "../value-objects/social-networking-value-object";
@@ -64,7 +63,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
 
         id: "07e4779b-8ab7-4d95-9905-d88c9aef924c",
         interations: {
-            publishes: [],
+            publications: [],
             comments: [someComment],
             replies: [],
         },
