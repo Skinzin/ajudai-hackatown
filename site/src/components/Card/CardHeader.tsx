@@ -1,9 +1,10 @@
+import { twMerge } from "tailwind-merge";
 
 
-export function CardHeader() {
+export function CardHeader({ children, className, ...rest }: { children: React.ReactNode } & React.HTMLAttributes<HTMLDivElement>) {
     return (
-        <header className="flex items-center justify-between">
-            <h3 className="font-bold">Assuntos</h3>
+        <header className={twMerge("flex items-center", className)} {...rest}>
+            {children}
         </header>
     )
 }

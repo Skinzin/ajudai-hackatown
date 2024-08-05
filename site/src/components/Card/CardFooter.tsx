@@ -1,9 +1,10 @@
+import { twMerge } from "tailwind-merge";
 
 
-export function CardFooter() {
+export function CardFooter({ children, className, ...rest }: { children: React.ReactNode } & React.HTMLAttributes<HTMLDivElement>) {
     return (
-        <footer>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Ver todas</button>
+        <footer className={twMerge("border-t-1 border-zinc-300 my-2 py-2", className)} {...rest}>
+            {children}
         </footer>
     )
 }
