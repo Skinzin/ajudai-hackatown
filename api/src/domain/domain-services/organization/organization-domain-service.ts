@@ -9,7 +9,7 @@ export class OrganizationDomainService {
     constructor() { }
 
     createOrganization(input: CreateOrganizationDomainServiceInput) {
-        const organization = OrganizationDomainEntity.create(input);
+        return OrganizationDomainEntity.create(input);
     }
 
     updateOrganization(input: UpdateOrganizationDomainServiceInput) {
