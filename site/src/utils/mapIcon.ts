@@ -6,9 +6,8 @@ const mapIcon = new Leaftlet.Icon({
 	iconUrl: mapMarkerImg.src,
 	iconRetinaUrl: mapMarkerImg.src,
 
-	iconSize: [58, 68],
+	iconSize: [46, 59],
 	iconAnchor: [29, 68],
-	popupAnchor: [0, -60],
 })
 
 export default mapIcon;
