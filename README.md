@@ -39,6 +39,10 @@ Primeiro foi desenvolvido o Wireframe e Protótipo após a discussão e estrutur
 ## 🎨 Identidade Visual
 Para a identidade visual procuramos algo que apresentasse o que queríamos, mas também tentamos trabalhar com coisas que queríamos testar (afinal, estamos usando essa oportunidade para aprender). 
 
+### Logo
+Para a logo, criamos duas pessoas juntas com um coração se formando, simbolizando o amor e cuidado que é gerado quando nos unimos para conseguir alcançar algo.
+<div align="center"><img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/Ajuda%20ai%20Logo.svg" alt="Ajuda Aí" width="40%"></div>
+
 ### Tipografia
 Para os títulos utilizamos a fonte Nunito, por sua aparência amigável e convidativa. Para o corpo escolhemos a Poppins, por conversar bem com a Nunito e, assim como ela, ter uma ótima legibilidade.
 
