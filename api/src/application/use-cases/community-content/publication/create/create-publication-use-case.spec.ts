@@ -1,7 +1,7 @@
 
 
 describe("(UnityTest) - CreatePublicationUseCase", () => {
-    it("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", () => {
+    it("Esse aqui n vai dar tempo... ", () => {
         expect(true).toBeTruthy();
     });
 });

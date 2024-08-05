@@ -23,7 +23,7 @@ describe('(Unit Test) CommunityContentDomainService', () => {
         about: "About the organization",
         email: "test@organization.com",
         password: "123456",
-        Address: new AddressValueObject(),
+        address: new AddressValueObject("Rua Exemplo", "123", "São Paulo", "SP", "12345678", 7777, -47.916667),
         phone: new PhoneValueObject("+1234567890", true, true, false),
         photo: "https://example.com/photo.jpg",
         social: {

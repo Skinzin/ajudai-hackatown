@@ -18,18 +18,7 @@ export class CreateOrganizationUseCase {
     ) { }
 
     async execute(input: CreateOrganizationUseCaseInputDTO): Promise<CreateOrganizationUseCaseOutputDTO> {
-
-        const createOrganizationDomainServiceInput: CreateOrganizationDomainServiceInput = {
-            ...input,
-            social: {
-                linkedin: input.social.linkedin ? new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(input.social.linkedin) : new EmptySocialNetworkValueObject(),
-                instagram: input.social.instagram ? new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(input.social.instagram) : new EmptySocialNetworkValueObject(),
-                twitter: input.social.twitter ? new SocialNetworkValueObject<TwitterSocialNetworkValueObject>(input.social.twitter) : new EmptySocialNetworkValueObject(),
-                facebook: input.social.facebook ? new SocialNetworkValueObject<FacebookSocialNetworkValueObject>(input.social.facebook) : new EmptySocialNetworkValueObject(),
-            }
-        }
-
-        const organization: OrganizationDomainEntity = new OrganizationDomainService().createOrganization(createOrganizationDomainServiceInput);
+        const organization: OrganizationDomainEntity = new OrganizationDomainService().createOrganization(input);
 
         await this.organizationRepository.save(organization);
 

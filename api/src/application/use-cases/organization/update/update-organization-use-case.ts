@@ -31,25 +31,7 @@ export class UpdateOrganizationUseCase {
 
         const updateOrganizationDomainServiceInput: UpdateOrganizationDomainServiceInput = {
             actualData: organization,
-
-            newData: {
-                name: input.newData.name,
-                area: input.newData.area,
-                about: input.newData.about,
-                email: input.newData.email,
-                isNeedSomeItems: input.newData.isNeedSomeItems,
-                isNeedVoluntarys: input.newData.isNeedVoluntarys,
-                isProvideSomeItems: input.newData.isProvideSomeItems,
-                photo: input.newData.photo,
-
-                phone: new PhoneValueObject(input.newData.phone.number, input.newData.phone.isCelular, input.newData.phone.isWhatsApp, input.newData.phone.isTelegram),
-                social: {
-                    linkedin: input.newData.social.linkedin ? new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(input.newData.social.linkedin) : new EmptySocialNetworkValueObject(),
-                    instagram: input.newData.social.instagram ? new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(input.newData.social.instagram) : new EmptySocialNetworkValueObject(),
-                    twitter: input.newData.social.twitter ? new SocialNetworkValueObject<TwitterSocialNetworkValueObject>(input.newData.social.twitter) : new EmptySocialNetworkValueObject(),
-                    facebook: input.newData.social.facebook ? new SocialNetworkValueObject<FacebookSocialNetworkValueObject>(input.newData.social.facebook) : new EmptySocialNetworkValueObject(),
-                }
-            }
+            ...input
         }
 
         const organizationUpdated = new OrganizationDomainService().updateOrganization(updateOrganizationDomainServiceInput);

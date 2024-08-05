@@ -1,33 +1,96 @@
-import { CreateOrganizationInput } from "@/domain/entities/organization/types/organization-domain-entity-inputs"
+import { CreateOrganizationInput, RestoreOrganizationInput } from "@/domain/entities/organization/types/organization-domain-entity-inputs"
 import { OrganizationDomainEntity } from "@/domain/entities/organization/organization-domain-entity"
-import { EmptySocialNetworkValueObject } from "@/domain/entities/value-objects/empty-social-network-value-object"
-import { FacebookSocialNetworkValueObject } from "@/domain/entities/value-objects/facebook-value-object"
-import { InstagramSocialNetworkValueObject } from "@/domain/entities/value-objects/instragram-social-network-value-object"
-import { LinkedinSocialNetworkValueObject } from "@/domain/entities/value-objects/linkedin-social-network-value-object"
-import { PhoneValueObject } from "@/domain/entities/value-objects/phone-value-object"
-import { SocialNetworkValueObject } from "@/domain/entities/value-objects/social-networking-value-object"
-import { TwitterSocialNetworkValueObject } from "@/domain/entities/value-objects/twitter-value-network-value-object"
 import { CommentDomainEntity } from "@/domain/entities/community-content/comments/comment-domain-entity"
 import { PublicationDomainEntity } from "@/domain/entities/community-content/publications/publication-domain-entity"
 import { ReplyDomainEntity } from "@/domain/entities/community-content/replies/reply-domain-entity"
 
 
-export interface CreateOrganizationDomainServiceInput extends CreateOrganizationInput { }
+export interface CreateOrganizationDomainServiceInput extends Omit<CreateOrganizationInput, 'address' | 'phone' | 'social'> {
+    address: {
+        street: string,
+        number: string,
+        city: string,
+        state: string,
+        cep: string,
+        lat: number,
+        lng: number,
+    }
+
+    social: {
+        linkedin: string
+        instagram: string
+        twitter: string
+        facebook: string
+    },
+
+
+    phone: {
+        number: string,
+        isCelular: boolean,
+        isWhatsApp: boolean,
+        isTelegram: boolean,
+    }
+}
+
+export interface RestoreOrganizationDomainServiceInput extends Omit<RestoreOrganizationInput, 'address' | 'phone' | 'social'> {
+    address: {
+        street: string,
+        number: string,
+        city: string,
+        state: string,
+        cep: string,
+        lat: number,
+        lng: number,
+    }
+
+    social: {
+        linkedin: string
+        instagram: string
+        twitter: string
+        facebook: string
+    },
+
+    phone: {
+        number: string,
+        isCelular: boolean,
+        isWhatsApp: boolean,
+        isTelegram: boolean,
+    }
+}
 
 export interface UpdateOrganizationDomainServiceInput {
     actualData: OrganizationDomainEntity
+
     newData: {
         name: string,
         area: string,
         about: string,
         email: string,
-        phone: PhoneValueObject,
+
+        phone: {
+            number: string,
+            isCelular: boolean,
+            isWhatsApp: boolean,
+            isTelegram: boolean,
+        },
+
+        address: {
+            street: string,
+            number: string,
+            city: string,
+            state: string,
+            cep: string,
+            lat: number,
+            lng: number,
+        }
+
         photo: string,
+
         social: {
-            linkedin: SocialNetworkValueObject<LinkedinSocialNetworkValueObject> | EmptySocialNetworkValueObject
-            instagram: SocialNetworkValueObject<InstagramSocialNetworkValueObject> | EmptySocialNetworkValueObject
-            twitter: SocialNetworkValueObject<TwitterSocialNetworkValueObject> | EmptySocialNetworkValueObject
-            facebook: SocialNetworkValueObject<FacebookSocialNetworkValueObject> | EmptySocialNetworkValueObject
+            linkedin: string
+            instagram: string
+            twitter: string
+            facebook: string
         },
 
         isNeedSomeItems: boolean,
@@ -51,6 +114,7 @@ interface ReadInteraction {
 }
 
 interface GetInteractionById extends ReadInteraction {
+    organization: OrganizationDomainEntity
     interactionId: string
 }
 
@@ -58,21 +122,21 @@ export interface ReadCommentsInteractionsDomainServiceInput extends ReadInteract
 export interface ReadRepliesInteractionsDomainServiceInput extends ReadInteraction { }
 export interface ReadPublicationsInteractionsDomainServiceInput extends ReadInteraction { }
 
-export interface GetCommentInteractionDomainServiceInput extends GetInteractionById {}
-export interface GetReplyInteractionDomainServiceInput extends GetInteractionById {}
-export interface GetPublicationInteractionDomainServiceInput extends GetInteractionById {}
+export interface GetCommentInteractionDomainServiceInput extends GetInteractionById { }
+export interface GetReplyInteractionDomainServiceInput extends GetInteractionById { }
+export interface GetPublicationInteractionDomainServiceInput extends GetInteractionById { }
 
 interface ReadItems {
     organization: OrganizationDomainEntity
 }
 
-export interface ReadNeededItemsDomainServiceInput extends ReadItems {}
-export interface ReadProvidedItemsDomainServiceInput extends ReadItems {}
+export interface ReadNeededItemsDomainServiceInput extends ReadItems { }
+export interface ReadProvidedItemsDomainServiceInput extends ReadItems { }
 
 interface GetItemById {
     organization: OrganizationDomainEntity
     itemId: string
 }
 
-export interface GetNeededItemDomainServiceInput extends GetItemById {}
-export interface GetProvidedItemDomainServiceInput extends GetItemById {}
+export interface GetNeededItemDomainServiceInput extends GetItemById { }
+export interface GetProvidedItemDomainServiceInput extends GetItemById { }

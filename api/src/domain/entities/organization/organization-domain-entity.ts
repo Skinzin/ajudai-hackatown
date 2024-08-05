@@ -150,7 +150,7 @@ export class OrganizationDomainEntity {
         organization.setAbout(input.about);
         organization.setEmail(input.email);
         organization.setPassword(input.password);
-        organization.setAddress(input.Address);
+        organization.setAddress(input.address);
         organization.setPhone(input.phone);
         organization.setPhoto(input.photo);
         organization.setSocial(input.social);

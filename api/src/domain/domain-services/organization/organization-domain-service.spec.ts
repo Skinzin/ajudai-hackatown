@@ -22,26 +22,28 @@ describe('(Unit Test) OrganizationDomainService', () => {
         about: "About the organization",
         email: "test@organization.com",
         password: "123456",
-        Address: new AddressValueObject(),
-        phone: new PhoneValueObject("+1234567890", true, true, false),
+        address: {
+            street: "Rua Exemplo",
+            number: "123",
+            city: "São Paulo",
+            state: "SP",
+            cep: "12345678",
+            lat: 7777,
+            lng: -47.916667,
+        },
+        phone: {
+            number: "+1234567890",
+            isCelular: true,
+            isWhatsApp: true,
+            isTelegram: false,
+        },
         photo: "https://example.com/photo.jpg",
         social: {
-            linkedin: new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(
-                "https://www.linkedin.com/company/pulse-mais/",
-               
-            ),
-            instagram: new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(
-                "https://www.instagram.com/PulseMais/",
-               
-            ),
-            twitter: new SocialNetworkValueObject<TwitterSocialNetworkValueObject>(
-                "https://twitter.com/PulseMais/",
-                
-            ),
-            facebook: new SocialNetworkValueObject<FacebookSocialNetworkValueObject>(
-                "https://www.facebook.com/PulseMais/",
-                
-            )
+            linkedin: "https://www.linkedin.com/company/pulse-mais/",
+            instagram: "https://www.instagram.com/PulseMais/",
+            twitter: "https://twitter.com/PulseMais/",
+            facebook: "https://www.facebook.com/PulseMais/",
+
         }
     };
 
@@ -52,7 +54,7 @@ describe('(Unit Test) OrganizationDomainService', () => {
 
     it('(updateOrganization) - Deve ser possível atualizar uma organização se todos os dados forem válidos', () => {
         const actualData = OrganizationDomainEntity.create(validCreateInput);
-        const newData = {
+        const newData: UpdateOrganizationDomainServiceInput['newData'] = {
             ...validCreateInput,
             name: 'Pedro pedro Pedro',
 

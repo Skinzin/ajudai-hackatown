@@ -4,5 +4,4 @@ import { CreatePublicationDomainServiceInput } from "@/domain/domain-services/co
 export interface CreatePublicationUseCaseInputDTO  {
     idOrganization: string;
     content: CreatePublicationDomainServiceInput['content'];
-
 }

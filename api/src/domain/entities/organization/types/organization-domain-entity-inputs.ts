@@ -16,7 +16,7 @@ export interface CreateOrganizationInput {
     password: string;
     photo: string;
 
-    Address: AddressValueObject;
+    address: AddressValueObject;
     phone: PhoneValueObject;
     social: {
         linkedin: SocialNetworkValueObject<LinkedinSocialNetworkValueObject> | EmptySocialNetworkValueObject,
@@ -27,4 +27,7 @@ export interface CreateOrganizationInput {
 }
 
 
-export interface RestoreOrganizationInput extends OrganizationEntity { }   
+export interface RestoreOrganizationInput extends OrganizationEntity {
+    
+
+ }   

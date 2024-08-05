@@ -4,7 +4,7 @@ export interface CreateItemInput {
     type: "need" | "provide";
     title: string;
     photo: string;
-    description: string;
+     
     donationValue: number;
     priority: "emergency" | "high" | "moderate" | "normal";
     category: string;
@@ -17,7 +17,7 @@ export interface RestoreItemInput {
     type: "need" | "provide";
     title: string;
     photo: string;
-    description: string;
+ 
     donationValue: number;
     priority: "emergency" | "high" | "moderate" | "normal";
     category: string;

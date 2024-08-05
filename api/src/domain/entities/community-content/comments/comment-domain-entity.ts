@@ -9,7 +9,7 @@ import { CreateCommentEntityInput, RestoreCommentEntityInput } from './types/com
 export class CommentDomainEntity implements CommentEntity {
     id?: string;
     organization?: Pick<OrganizationEntity, "id" | "name" | "photo" | "area">;
-    publication?: Pick<PublicationDomainEntity, "content">;
+    publication?: Pick<PublicationDomainEntity, "content" | "id">;
     content?: string;
     replies?: ReplyEntity[];
     createdAt?: Date;
@@ -82,7 +82,7 @@ export class CommentDomainEntity implements CommentEntity {
         this.organization = organization;
     }
 
-    public getpublication(): Pick<PublicationDomainEntity, "content"> | undefined {
+    public getpublication(): Pick<PublicationDomainEntity, "content" | "id"> | undefined {
         return this.publication;
     }
 

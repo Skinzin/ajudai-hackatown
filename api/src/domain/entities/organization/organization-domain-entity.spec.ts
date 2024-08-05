@@ -26,7 +26,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
         about: "About the organization",
         email: "test@organization.com",
         password: "123456",
-        Address: new AddressValueObject(),
+        address: new AddressValueObject("Rua Exemplo", "123", "São Paulo", "SP", "12345678", 7777, -47.916667),
         phone: new PhoneValueObject("+1234567890", true, true, false),
         photo: "https://example.com/photo.jpg",
         social: {
@@ -38,7 +38,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
     };
 
     const someComment: CommentDomainEntity = CommentDomainEntity.create({
- 
+
         organization: {
             id: "07e4779b-8ab7-4d95-9905-d88c9aef924c",
             name: "Pulse Mais",
@@ -65,7 +65,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
             replies: [],
         },
 
-        address: new AddressValueObject(),
+        address: new AddressValueObject("Rua Exemplo", "123", "São Paulo", "SP", "12345678", 7777, -47.916667),
         password: "123456",
 
         isActive: true,
@@ -95,7 +95,7 @@ describe("(UnityTest) - OrganizationDomainEntity \n\n", () => {
         expect(organization.getEmail()).toEqual("test@organization.com");
         expect(organization.getArea()).toEqual("Animais de Rua");
         expect(organization.getAbout()).toEqual("About the organization");
-        expect(organization.getAddress()).toEqual(input.Address);
+        expect(organization.getAddress()).toEqual(input.address);
         expect(organization.getPhone()).toEqual(input.phone);
         expect(organization.getPhoto()).toEqual("https://example.com/photo.jpg");
     });

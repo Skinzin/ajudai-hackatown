@@ -5,7 +5,7 @@ export interface ItemEntity {
     type?: "need" | "provide"
     title?: string
     photo?: string
-    description?: string
+   
     donationValue?: number
     priority?: "emergency" | "high" | "moderate" | "normal"
     category?: string

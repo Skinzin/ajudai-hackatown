@@ -1,15 +1,96 @@
+import { RestoreOrganizationInput } from '@/domain/entities/organization/types/organization-domain-entity-inputs';
+import { CreateOrganizationDomainServiceInput, RestoreOrganizationDomainServiceInput } from '@/domain/domain-services/organization/types/organization-domain-service-inputs';
 import { OrganizationDomainEntity } from "@/domain/entities/organization/organization-domain-entity";
-import { CreateOrganizationDomainServiceInput, DeleteOrganizationDomainServiceInput, GetCommentInteractionDomainServiceInput, GetNeededItemDomainServiceInput, GetProvidedItemDomainServiceInput, GetPublicationInteractionDomainServiceInput, GetReplyInteractionDomainServiceInput, ReadCommentsInteractionsDomainServiceInput, ReadNeededItemsDomainServiceInput, ReadProvidedItemsDomainServiceInput, ReadPublicationsInteractionsDomainServiceInput, ReadRepliesInteractionsDomainServiceInput, SaveInteractionDomainServiceInput, UpdateOrganizationDomainServiceInput } from "./types/organization-domain-service-inputs";
+import { DeleteOrganizationDomainServiceInput, GetCommentInteractionDomainServiceInput, GetNeededItemDomainServiceInput, GetProvidedItemDomainServiceInput, GetPublicationInteractionDomainServiceInput, GetReplyInteractionDomainServiceInput, ReadCommentsInteractionsDomainServiceInput, ReadNeededItemsDomainServiceInput, ReadProvidedItemsDomainServiceInput, ReadPublicationsInteractionsDomainServiceInput, ReadRepliesInteractionsDomainServiceInput, SaveInteractionDomainServiceInput, UpdateOrganizationDomainServiceInput } from "./types/organization-domain-service-inputs";
 import { CommentDomainEntity } from "@/domain/entities/community-content/comments/comment-domain-entity";
 import { ReplyDomainEntity } from "@/domain/entities/community-content/replies/reply-domain-entity";
 import { PublicationDomainEntity } from "@/domain/entities/community-content/publications/publication-domain-entity";
+import { EmptySocialNetworkValueObject } from "@/domain/entities/value-objects/empty-social-network-value-object";
+import { FacebookSocialNetworkValueObject } from "@/domain/entities/value-objects/facebook-value-object";
+import { InstagramSocialNetworkValueObject } from "@/domain/entities/value-objects/instragram-social-network-value-object";
+import { LinkedinSocialNetworkValueObject } from "@/domain/entities/value-objects/linkedin-social-network-value-object";
+import { SocialNetworkValueObject } from "@/domain/entities/value-objects/social-networking-value-object";
+import { TwitterSocialNetworkValueObject } from "@/domain/entities/value-objects/twitter-value-network-value-object";
+import { CreateOrganizationInput } from '@/domain/entities/organization/types/organization-domain-entity-inputs';
+import { PhoneValueObject } from '@/domain/entities/value-objects/phone-value-object';
+import { AddressValueObject } from '@/domain/entities/value-objects/address-value-object';
 
 
 export class OrganizationDomainService {
     constructor() { }
 
     createOrganization(input: CreateOrganizationDomainServiceInput) {
-        return OrganizationDomainEntity.create(input);
+
+        const social = {
+            linkedin: input.social.linkedin ? new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(input.social.linkedin) : new EmptySocialNetworkValueObject(),
+            instagram: input.social.instagram ? new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(input.social.instagram) : new EmptySocialNetworkValueObject(),
+            twitter: input.social.twitter ? new SocialNetworkValueObject<TwitterSocialNetworkValueObject>(input.social.twitter) : new EmptySocialNetworkValueObject(),
+            facebook: input.social.facebook ? new SocialNetworkValueObject<FacebookSocialNetworkValueObject>(input.social.facebook) : new EmptySocialNetworkValueObject(),
+        }
+
+        const phone: PhoneValueObject = new PhoneValueObject(
+            input.phone.number,
+            input.phone.isCelular,
+            input.phone.isWhatsApp,
+            input.phone.isTelegram
+        );
+
+        const address: AddressValueObject = new AddressValueObject(
+            input.address.street,
+            input.address.number,
+            input.address.city,
+            input.address.state,
+            input.address.cep,
+            input.address.lat,
+            input.address.lng
+        );
+
+        const CreateOrganizationInput: CreateOrganizationInput = {
+            ...input,
+            social,
+            phone,
+            address
+        }
+
+
+        return OrganizationDomainEntity.create(CreateOrganizationInput);
+    }
+
+    restoreOrganization(input: RestoreOrganizationDomainServiceInput) {
+
+        const social = {
+            linkedin: input.social.linkedin ? new SocialNetworkValueObject<LinkedinSocialNetworkValueObject>(input.social.linkedin) : new EmptySocialNetworkValueObject(),
+            instagram: input.social.instagram ? new SocialNetworkValueObject<InstagramSocialNetworkValueObject>(input.social.instagram) : new EmptySocialNetworkValueObject(),
+            twitter: input.social.twitter ? new SocialNetworkValueObject<TwitterSocialNetworkValueObject>(input.social.twitter) : new EmptySocialNetworkValueObject(),
+            facebook: input.social.facebook ? new SocialNetworkValueObject<FacebookSocialNetworkValueObject>(input.social.facebook) : new EmptySocialNetworkValueObject(),
+        }
+
+        const phone: PhoneValueObject = new PhoneValueObject(
+            input.phone.number,
+            input.phone.isCelular,
+            input.phone.isWhatsApp,
+            input.phone.isTelegram
+        );
+
+        const address: AddressValueObject = new AddressValueObject(
+            input.address.street,
+            input.address.number,
+            input.address.city,
+            input.address.state,
+            input.address.cep,
+            input.address.lat,
+            input.address.lng
+        );
+
+
+        const RestoreOrganizationInput: RestoreOrganizationInput = {
+            ...input,
+            social,
+            phone,
+            address
+        }
+
+        return OrganizationDomainEntity.restore(RestoreOrganizationInput);
     }
 
     updateOrganization(input: UpdateOrganizationDomainServiceInput) {

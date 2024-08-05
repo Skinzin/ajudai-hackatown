@@ -5,6 +5,7 @@ import { CommunityContentDomainService } from '@/domain/domain-services/communit
 import { PublicationDomainEntity } from '@/domain/entities/community-content/publications/publication-domain-entity';
 import { OrganizationsRepository } from '@/domain/repositories/organizations-repository';
 import { CreatePublicationDomainServiceInput } from '@/domain/domain-services/community-content/types/community-content-domain-inputs';
+import { OrganizationNotFoundApplicationException } from '@/application/application-exceptions/organization-not-found-application-exception';
 
 
 export class CreatePublicationUseCase {
@@ -17,11 +18,21 @@ export class CreatePublicationUseCase {
 
         const organization = await this.organizationRepository.findById(input.idOrganization);
         if (!organization) {
-            throw new Error("Organization not found, criar exception personalizada dps.");
+            throw new OrganizationNotFoundApplicationException(
+                "read-organization-use-case.ts",
+                23,
+                "O organização com o id informado não foi encontrada."
+            )
         }
 
         const createPublicationDomainServiceInput: CreatePublicationDomainServiceInput = {
-            organization: organization,
+            organization: {
+                id: organization.getId()!,
+                name: organization.getName()!,
+                area: organization.getArea()!,
+                photo: organization.getPhoto()!
+            },
+
             content: input.content
         }
 
@@ -29,15 +40,12 @@ export class CreatePublicationUseCase {
             createPublicationDomainServiceInput
         );
 
-        const updatedOrganizationInteractions = organization.addInteraction(createdPublication);
-
-        this.organizationRepository.save(updatedOrganizationInteractions);
         this.communityContentRepository.save(createdPublication);
 
         const output: CreatePublicationUseCaseOutputDTO = {
             publication: createdPublication
         }
 
-
+        return output;
     }
 }

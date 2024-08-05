@@ -15,7 +15,7 @@ describe("(UnityTest) - ItemDomainEntity", () => {
         type: "need",
         title: "Valid Title",
         photo: "https://example.com/photo.jpg",
-        description: "This is a valid description for the item.",
+       
         donationValue: 100,
         priority: "high",
         category: "food",
@@ -28,7 +28,7 @@ describe("(UnityTest) - ItemDomainEntity", () => {
         type: "provide",
         title: "Valid Title",
         photo: "https://example.com/photo.jpg",
-        description: "This is a valid description for the item.",
+       
         donationValue: 50,
         priority: "moderate",
         category: "clothes",
