@@ -8,6 +8,35 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        "pelorous": {
+          '50': '#ebfffd',
+          '100': '#cdfffc',
+          '200': '#a1fffd',
+          '300': '#60fffe',
+          '400': '#18f5f8',
+          '500': '#00d8de',
+          '600': '#00a8b5',
+          '700': '#088896',
+          '800': '#106d7a',
+          '900': '#125a67',
+          '950': '#053c47',
+        },
+        'affair': {
+          '50': '#f9f7fc',
+          '100': '#f3eef9',
+          '200': '#e7dcf2',
+          '300': '#d5c0e7',
+          '400': '#bb99d9',
+          '500': '#9e71c4',
+          '600': '#8252a7',
+          '700': '#774898',
+          '800': '#5a3771',
+          '900': '#4c315e',
+          '950': '#2d173b',
+      },
+    
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
