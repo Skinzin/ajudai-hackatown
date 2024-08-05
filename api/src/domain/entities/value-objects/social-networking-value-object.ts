@@ -4,7 +4,8 @@ import { LinkedinSocialNetworkValueObject } from "./linkedin-social-network-valu
 
 export class SocialNetworkValueObject<SocialNetWokingType> {
     public url: string
-    
 
-
+    constructor(url: string) {
+        this.url = url;
+    }
 }
