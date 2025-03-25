@@ -93,6 +93,16 @@ Quanto às cores, foram escolhidas tendo em mente o trabalho com ONGs. Tendo iss
 <b>NextJS, TailwindCSS, NodeJS, Typescript</b>: O código foi construído com a magia dessas tecnologias.
 </div>
 
+<br>
+
+### Membros
+
+| ![](https://github.com/anaeli-silva.png?size=64) | ![](https://github.com/gabrielaasouza.png?size=64) | ![](https://github.com/MatheusPassoss.png?size=64) | ![](https://github.com/Skinzin.png?size=64) |
+|---|---|---|---|
+| Anaeli Silva | Gabriela Souza | Matheus Passos | Vinicius Costa |
+
+
+
 ##  
 <div style="display: inline-block" align="center">
   <img src="https://github.com/Skinzin/ajudai-hackatown/blob/main/img/coda_fofos.svg" alt="Coda Fofos" width="25%">
